@@ -9,13 +9,22 @@ hay còn gọi là primitive type (tham trị)
 + boolean: đúng ,sai
 + null   : có giá trị rỗng(thường làm việc object)
 
+    let a = null;
+    console.log(typeof (a));
+
+    console.log(Object.prototype.toString.call(a));
+
+
 + undefined: không có giá trị(làm việc biến nguyên thủy)
     (khác nhau giữa null,undefined: khai báo biến cấp phát ô nhớ không có giá trị,
     khai báo biến cấp phát ô nhớ có giá trị là null)
 
 + NaN    : not a number
-+ Symbol ES6
-+ BigInt E14
+    /* cú pháp kiểm tra có phải là NaN hay không
+   console.log(Number.isNaN()); (true là phải NaN, false là không phải NaN*/
+
+/*  + Symbol ES6
+    + BigInt E14
 
 2. kiểu dữ liệu phức tạp hay còn gọi là referent type(tham chiếu)
 + object
@@ -28,5 +37,3 @@ hay còn gọi là primitive type (tham trị)
 
 // let a = "hưng béo"/ 5; > NaN
 
-/* cú pháp kiểm tra có phải là NaN hay không
-   console.log(Number.isNaN()); */

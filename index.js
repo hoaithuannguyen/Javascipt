@@ -20,13 +20,19 @@
 
     C1: var (1995)
     + có thể khai báo lại
+    var a
+    var a
     + có thể gán lại giá trị
+    var a = 9;
+    var a = 8;
     + có hoisting là : (đã đưa việc khai báo lên đầu)
     + pham vị hoạt động function
     C2: let (2015)
     + có thể gán lại giá trị
+    let a = 9;
+    let a = 8;
     + không thể khai báo lại
-    + khi hoisting không truy cập được
+    + có hoisting nhưng không truy cập được
     + phạm vi block-scope { nằm trong ngoặc nhọn }
     C3: const (2015)
     + thường dùng để khai báo hằng số (hằng số:là giá trị cố định)

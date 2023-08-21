@@ -12,11 +12,12 @@
 trusthy: string,number
 falsy: NaN,null, undefined,0, fasle,","
 
+trong một biểu thức có && và || thì sẽ ăn theo && trước.
 
 3. Toán tử so sánh
 == : so sánh giá trị
-=== : so sánh giá trị + kiểu dữ liệu
->=, <=, !=, !==, >, <
+===(ăn theo &&): so sánh giá trị + kiểu dữ liệu
+>=, <=, !=, !==(ăn theo hoặc ||), >, <   phần này nghiên cứu kỹ hơn
 
 
 4. Toán tử 3 ngôi
