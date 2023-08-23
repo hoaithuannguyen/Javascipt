@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        -do while: chạy ít nhất 1 lần, khi nào điều kiện sai thì dừng
+        -break: thoát khỏi vòng lặp
+     -->
+    <script>
+        /* let i = 1;
+        do {
+            console.log(i);
+            i++
+        } while (i < 11) */
+
+
+        let i = 1;
+        do {
+            let a = prompt(`Mời bạn nhập mã lần ${i}`);
+            if (a == "123456") {
+                alert("chúc mừng bạn!")
+                break;
+            }
+            i++
+        } while (i <= 3)
+        console.log("Bạn đã hết lượt nhập");
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
