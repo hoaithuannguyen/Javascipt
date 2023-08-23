@@ -22,6 +22,16 @@ trong một biểu thức có && và || thì sẽ ăn theo && trước.
 
 4. Toán tử 3 ngôi
  "? :" (thứ 2 học)
+? là điều kiện đúng thì nó thực hiện còn : là điều kiện sai thì nó thực hiện
+(? chạy khi true; : chạy khi false)
+
+Ví dụ:
+let a = 6;
+
+a>3 ? console.log(`${a}` lớn hơn 3) : console.log(`${a}` bé hơn 3);
+
+(toán tử 3 ngôi dùng nhiều khi đi làm, dùng trong if else ,có một trường hơp if-else thôi)
+
 5. Toán tử nullish  ??
 nếu gặp null hoặc undefined sẽ theo thằng cuối còn không sẽ lấy đầu tiên luôn
 

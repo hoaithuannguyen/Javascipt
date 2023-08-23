@@ -82,6 +82,3 @@ if (value == 'ECMAScript') {
 console.log(typeof (a)); */
 
 
-
-
-

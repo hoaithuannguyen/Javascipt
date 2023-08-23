@@ -12,7 +12,8 @@ hay còn gọi là primitive type (tham trị)
     let a = null;
     console.log(typeof (a));
 
-    console.log(Object.prototype.toString.call(a));
+    console.log(Object.prototype.toString.call(a));(code này để test kiểu dữ liệu của
+        null)
 
 
 + undefined: không có giá trị(làm việc biến nguyên thủy)
