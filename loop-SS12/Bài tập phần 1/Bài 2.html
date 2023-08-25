@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let number = +prompt("Nhập nhiệt độ phù hợp vào");
+        while (20 > number || number > 100) {
+            if (number < 20) {
+                alert("Tăng nhiệt độ lên");
+                number = +prompt("Nhập nhiệt độ phù hợp vào");
+            } else if (number > 100) {
+                alert("Giảm nhiệt độ đi");
+                number = +prompt("Nhập nhiệt độ phù hợp vào");
+            }
+        }
+        console.log("Bạn đã nhập đúng");
+    </script>
+</body>
+
+</html>

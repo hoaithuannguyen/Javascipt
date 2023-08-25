@@ -23,12 +23,13 @@
         } */
 
         /* kiểm tra xem có phải số hoàn hảo không? 
-        số hoàn hảo là số có tổng các ước nhỏ hơn nó mà bằng chính nó thì là số hoàn hảo
+        số hoàn hảo là số có tổng các ước nhỏ hơn nó mà bằng chính nó thì là số hoàn
+        hảo và số hoàn hảo chia hết cho các ước của nó.
         vd: 6 : 1,2,3
         28: 1,2,4,7,14*/
 
 
-        let number = prompt("mời nhập");
+        let number = +prompt("mời nhập");
         let total = 0;
         for (let i = 1; i < number; i++) {
             if (number % i == 0) {

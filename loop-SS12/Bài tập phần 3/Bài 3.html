@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let count = 0;
+        let total = 0;
+        let soNguyenTo = "Nhóm số nguyên tố: "
+        let soHoanHao = "Nhóm số hoàn hảo: "
+        let soChan = "Nhóm số chẵn: "
+        let soLe = "Nhóm số lẻ: "
+        let number = 1;
+
+        while (number > 0) {
+            number = +prompt("Mời nhập tiếp");
+            if (number < 0) {
+                console.log(soNguyenTo);
+                console.log(soHoanHao);
+                console.log(soChan);
+                console.log(soLe);
+                break;
+            }
+            //kiểm tra số nguyên tố
+            for (let i = 2; i <= number; i++) {
+                if (number % i == 0) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                // console.log(`${number} là số nguyên tố`)
+                soNguyenTo = soNguyenTo + number + " "
+            }
+            count = 0
+
+            //kiểm tra số hoàn hảo
+            for (let k = 1; k < number; k++) {
+                if (number % k == 0) {
+                    total = total + k;
+                }
+            }
+            if (total == number) {
+                // console.log(`${number} là số hoàn hảo`)
+                soHoanHao = soHoanHao + number + " "
+            }
+            total = 0
+
+            //kiểm tra số chẵn lẻ
+            if (number % 2 == 0) {
+                // console.log(`${number} là số chẵn`);
+                soChan = soChan + number + " "
+            } else {
+                // console.log(`${number} là số lẻ`);
+                soLe = soLe + number + " "
+            }
+        }
+    </script>
+</body>
+
+</html>
