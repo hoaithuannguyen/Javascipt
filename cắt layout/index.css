@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.one {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid gray;
+}
+
+.phone {
+    margin-left: 1rem;
+}
+
+.slogan {}
+
+.search {
+    margin-right: 1rem;
+}
+
+.two {
+    display: flex;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.hocanh {
+    margin-left: 1rem;
+}
+
+.home {
+    display: flex;
+    margin-left: 25rem;
+    align-items: center;
+}
+
+.home-one {}
+
+.about {
+    margin-left: 3rem;
+}
+
+.shop {
+    margin-left: 3rem;
+}
+
+.pages {
+    margin-left: 3rem;
+}
+
+.blog {
+    margin-left: 3rem;
+}
+
+.contact {
+    margin-left: 3rem;
+}
+
+.three {
+    background-image: url(./images/banner1.jpg);
+    background-size: 100% 100%;
+    height: 40rem;
+    margin-top: 3rem;
+}
+
+.summer {
+    margin-left: 5rem;
+    padding-top: 15rem;
+    width: 40%;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.next {
+    display: flex;
+    justify-content: space-between;
+}
+
+.next-one {
+
+    background-color: white;
+}
+
+.next-two {
+
+    background-color: white;
+}
+
+.lorem {
+    margin-left: 5rem;
+    width: 40%;
+    margin-top: 2rem;
+}
+
+.shopit {
+    margin-left: 5rem;
+    margin-top: 3rem;
+    position: relative;
+}
+
+.btn-one {
+    background-color: white;
+    width: 12rem;
+    height: 4rem;
+    border: none;
+}
+
+.shopitspan {
+    position: absolute;
+    left: 9rem;
+    top: 1.2rem;
+}
+
+/* inline:các thẻ inline đều nằm trên 1 dòng, width = độ dài nội dung,không set
+được width, height
+block:mỗi thẻ block 1 dòng, width chiếm tất cả,set được width,height
+inline-block: 
+--------------
+margin
+padding
+border
+content
+--------------
+cần hỏi lại phần lấy kiểu phông chữ
+---------------
+hiển thị hình ảnh nhỏ trên thanh công cụ
+*/

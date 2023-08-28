@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let number = [];
+        let add;
+        for (let i = 1; i <= 5; i++) {
+            do {
+                add = +prompt(`nhap so thu ${i}`);
+            } while (number.includes(add));
+            number.push(add);
+        }
+        console.log(number);
+        let maxNumber = 0;
+        let vitri;
+        for (let j = 0; j < number.length; j++) {
+            if (number[j] > maxNumber) {
+                maxNumber = number[j];
+                vitri = j;
+            }
+        }
+        console.log(`gia tri lon nhat la ${maxNumber} co  vi  tri la  ${vitri} `);
+    </script>
+</body>
+
+</html>

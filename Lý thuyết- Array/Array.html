@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+     Array:
+    -lưu trữ tập hợp các phần tử (Element khác nhau) lại với nhau
+    + nói đến array là nói đến các phần tử
+    -array là kiểu dữ liệu phức tạp
+    -giá trị lưu ở vùng nhớ HEAP
+    -kiểu tham chiếu
+    1. Cách khởi tạo mảng
+        let students = ["hoa","hong","thao",5,{}];
+        - Mảng chứa các phần tử ngăn cách với nhau bởi dấu phẩy
+        - Mảng có thể chứa nhiều kiểu dữ kiệu khác nhau (chứa cả 1 mảng khác)
+    2. Các thuộc tính riêng của mảng
+    - Index: là chỉ mục các phần tử trong mảng
+    + chỉ mục của mảng được oánh số bắt đầu từ 0
+    - Length: độ dài của mảng
+        console.log("số phần từ trong mảng là", students.length);
+        độ dài mảng này chủ yếu là để duyệt mảng
+    3. typeof của array là object
+        console.log(typeof(students));
+    - kiểm tra có phải là mảng hay không thì dùng
+        console.log(Array.isArray("5"));
+    4. Truy cập các phần tử trong mảng
+    + tên mảng[index]   
+    5. CRUD với mảng
+    - C: Create: thêm mới phần tử trong mảng
+    + dùng push(): được gọi là phương thức thêm phần tử vào vị trí cuối cùng của mảng
+    + unshift(): được gọi là phương thức thêm phần tử vào vị trí đầu tiên của mảng
+    + thêm trực tiếp theo chỉ mục index
+    + splice(_1,_2,huệ,đào,...,) _1 vị trí muốn xóa,_2 số phần tử muốn xóa,huệ là thêm vào
+    tính năng splice vừa xóa vừa thêm  phần tử vào được.
+    - R: read: đọc hay duyệt các phần tử trong mảng
+    + for thường  : hoạt động bình thường
+    + for in : for (let key in students){
+                 console.log(key);
+        } 
+        key : là chỉ số index
+    + for-of: in ra giá trị các phần tử trong mảng
+
+    - U: Update: cập nhật các phần tử trong mảng
+    + update: trực tiếp
+    students[0]="đào" thì nó xóa phần tử cũ, thêm phần tử mới
+    + update:splice(tương tác trực tiếp với mảng cũ)
+    - D: delete: xóa phần tử trong mảng
+    + pop(): xóa phần tử cuối của mảng
+    + shift: xóa phần tử đầu của mảng
+    + splice("vị trí muốn xóa""số phần tử muốn xoa""giá trị muốn thêm vào"):
+    * lưu ý:tổng số phần tử và chỉ mục là khác nhau
+-------------------------------------------------------------------------------------
+    Các phương thức làm việc với mảng.
+    1.slice("vị trí cắt""cắt đến vị trí đó(chứ không cắt thằng đó)")
+    - cắt ,sao chép ra 1 mảng mới. dùng cho cả chuỗi và mảng
+    2. Sort()
+    - sắp xếp các phần tử trong mảng theo bảng mã ASCI(theo bảng chữ cái)
+    3. reverse(): đảo ngược mảng
+    4. Split() : cắt chuỗi thành mảng
+        let text="hello rikkei" thì muốn cắt phải console.log(text.split(" "))
+    lưu ý : split(" ") và split("-")
+    5. join() : Gộp các phần tử trong mảng thành chuỗi
+        ví dụ: console.log(students.join("-"))
+    6. toString: chuyển mảng thành chuỗi, chuyển number thành chuỗi(còn join thì
+    không chuyển number thành chuỗi được)
+    7. IndexOf(): kiểm tra phần tử có trong mảng hay không,nếu có trả về vị trí đầu
+     tiên,không có trả về -1 
+    8. Includes: tìm kiếm phần tử ,trả về giá trị true/false   
+    9. toUpperCase(): chuyển thành chữ hoa 
+    10. toLowerCase(): chuyển thành chữ thường
+    11. charAt(): lấy kí tự vị trí của chuỗi
+    12.map()
+    13.reduce()
+    14.filter()
+    15.forEach()
+    16.find()
+    17.findIndex()
+    18.every()
+    19.some()
+    20.fill()
+    21.concat()
+    22.endWidth()
+    23.startWidth()
+
+     -->
+
+    <script>
+        /*   let students = ["hoa", "hong", "thao", 5, {}];
+          console.log("số phần từ trong mảng là", students.length);
+          console.log(typeof (students));
+          console.log(Array.isArray("5")); */
+
+        // let students = ["hoa", "hong", "lan"];
+        // students[4] = 16;
+        /* students.push("lan");
+        students.push("hong"); */
+        // students[students.length] = "minh";
+        // students[students.length + 1] = "lan";
+        // console.log(students);
+        // students.splice(0,0,"lan")
+        /*  for (let key in students) {
+             console.log(students[key]);
+         } */
+        /*  for (let value of students) {
+             console.log(value);
+         } */
+
+        // let result = students.slice(1,2);
+
+        /*
+                let text = "hưng quá béo hưng ơii làa hưng";
+                let result = text.split(" ");
+                // chuyển từ chuỗi sang mảng => result bây giờ là mảng có 7 phần tử
+                for (let i = 0; i < result.length; i++) {
+                    result[i] = result[i].slice(0, 2) + result[i].charAt(2).toUpperCase()
+                        + result[i].slice(3);
+                    console.log(result);
+                    //result[i] là phần tử "hưng" gắn lại bằng 1 mảng khác
+                }
+                console.log(result.join(" ")); */
+
+
+        /* let a = ["hung"];
+        console.log(a[0].slice(0, 1));
+        console.log(a.join(" ")); */
+    </script>
+</body>
+
+</html>

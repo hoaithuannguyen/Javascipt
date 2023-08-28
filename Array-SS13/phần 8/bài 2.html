@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = window.prompt();
+        // mặc định khi nhập là chuỗi
+        let result = [num[0]];
+        // biến result có giá trị là phần tử đầu tiên của chuỗi,
+        // result chuyển thành mảng
+
+        for (let x = 1; x < num.length; x++) {
+            if ((num[x - 1] % 2 === 0) && (num[x] % 2 === 0)) {
+                result.push('-', num[x]);
+            }
+            else {
+                result.push(num[x]);
+            }
+        }
+        // vòng lặp chạy từ 1 đến hết độ dài chuỗi
+        // có nghĩa là sẽ đi qua từng phần tử của chuỗi để xét
+        // phần tử nào thỏa mãn điều kiện thì push
+        console.log(result.join(""));
+        // result.join để chuyển từ mảng sang chuỗi
+
+    </script>
+</body>
+
+</html>

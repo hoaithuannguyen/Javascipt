@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let input = prompt("Mời nhập 10 số nguyên tố");
+        let myArray = input.split(" ");
+        myArray.sort(function (a, b) { return a - b });
+        console.log("Số lớn nhất là", myArray[myArray.length - 1]);
+        console.log("Ở vị trí index", myArray.length - 1);
+    </script>
+</body>
+
+</html>

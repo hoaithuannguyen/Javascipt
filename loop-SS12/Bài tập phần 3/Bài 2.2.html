@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let number = +prompt("mời nhập");
+        let total = 0;
+        let count = 0;
+        let num = 2;
+        while (count < number) {
+            for (let i = 1; i < num; i++) {
+                /* mục đích của khối code if else này là cho nó quay từ số 2 đến số n để tìm ra
+                số hoàn hảo */
+                if (num % i == 0) {
+                    total += i;
+                    // cho num chạy từ 2....n(để tìm ra ước)
+                }
+            }
+            if (total == num) {
+                // so sánh các ước với num
+                console.log(`${num} là số hoàn hảo`);
+                // nếu là số hoàn hảo thì count++
+                count++
+            }
+            num++;
+            // mỗi vòng đi qua thì num tăng để kiểm tra tiếp
+            total = 0;
+            // reset lại biến total
+        }
+
+    </script>
+</body>
+
+</html>

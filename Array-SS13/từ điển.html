@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let text = prompt("Nhập 1 từ để dịch từ tiếng anh sang tiếng việt");
+        let myArray = text.split(" ");
+        let english = ["a", "b", "c", "hello", "good"];
+        let vietNam = ["ây", "bi", "si", "xin chào", "tốt"];
+        let index = null;
+
+        for (let i = 0; i < english.length; i++) {
+
+            if (english.indexOf(myArray[i]) !== -1) {
+                index = english.indexOf(myArray[i]);
+                console.log(vietNam[index]);
+                break;
+            } else {
+                alert("Không tìm thấy");
+                break;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
