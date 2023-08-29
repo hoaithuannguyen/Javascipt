@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = prompt("Mời nhập dãy số nguyên")
+        let number = num.split(" ");
+        let count = 0;
+        for (let x = 0; x < number.length; x++) {
+            if (number[x] < 0) {
+                count++
+            }
+        }
+        console.log(`Có ${count} là số nguyên âm`);
+    </script>
+</body>
+
+</html>

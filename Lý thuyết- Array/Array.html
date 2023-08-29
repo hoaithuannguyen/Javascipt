@@ -75,16 +75,18 @@
     9. toUpperCase(): chuyển thành chữ hoa 
     10. toLowerCase(): chuyển thành chữ thường
     11. charAt(): lấy kí tự vị trí của chuỗi
-    12.map()
-    13.reduce()
-    14.filter()
-    15.forEach()
-    16.find()
-    17.findIndex()
-    18.every()
-    19.some()
-    20.fill()
-    21.concat()
+    12.map():dùng để duyệt mảng(học thêm về function)--hay dùng
+    13.reduce():dùng để duyệt mảng(học thêm về function)--hay dùng
+    14.filter():dùng để duyệt mảng(học thêm về function)--hay dùng
+    15.forEach():dùng để duyệt mảng(học thêm về function)
+    16.find():dùng để duyệt mảng(học thêm về function)
+    17.findIndex():dùng để duyệt mảng(học thêm về function)
+    18.every():dùng để duyệt mảng(học thêm về function)
+    19.some():dùng để duyệt mảng(học thêm về function)
+    20.fill(): thay thế các phần tử trong mảng bằng giá trị fill
+    21.concat(): gộp các mảng lại với nhau
+    ----------------
+kiểm tra phần tử đứng đầu hay cuối của mảng
     22.endWidth()
     23.startWidth()
 
@@ -113,17 +115,17 @@
 
         // let result = students.slice(1,2);
 
-        /*
-                let text = "hưng quá béo hưng ơii làa hưng";
-                let result = text.split(" ");
-                // chuyển từ chuỗi sang mảng => result bây giờ là mảng có 7 phần tử
-                for (let i = 0; i < result.length; i++) {
-                    result[i] = result[i].slice(0, 2) + result[i].charAt(2).toUpperCase()
-                        + result[i].slice(3);
-                    console.log(result);
-                    //result[i] là phần tử "hưng" gắn lại bằng 1 mảng khác
-                }
-                console.log(result.join(" ")); */
+
+        let text = "hưng quá béo hưng ơii làa hưng";
+        let result = text.split(" ");
+        // chuyển từ chuỗi sang mảng => result bây giờ là mảng có 7 phần tử
+        for (let i = 0; i < result.length; i++) {
+            result[i] = result[i].slice(0, 2) + result[i].charAt(2).toUpperCase()
+                + result[i].slice(3);
+            console.log(result);
+            //result[i] là phần tử "hưng" gắn lại bằng 1 mảng khác
+        }
+        console.log(result.join(" "));
 
 
         /* let a = ["hung"];

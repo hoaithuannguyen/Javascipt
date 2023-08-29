@@ -9,30 +9,27 @@
 
 <body>
     <script>
-        /*  let input = prompt("Mời nhập 10 số nguyên tố");
-             let myArray = input.split(" ");
-             console.log(myArray);
-             for (let i = 0; i < myArray.length; i++) {
-                 if (myArray[i] >= 10) {
-                     console.log(myArray[i]);
-                 }
-             } */
-
         let count = 0;
         let numbers = [];
         do {
             let num = +prompt("mời bạn nhập số");
-            if (Number.isInteger(num)) {
+            if (Number.isInteger(num) && numbers.indexOf(num) == -1) {
                 count++;
-                if (num >= 10) {
-                    numbers.push(num);
-                }
+                numbers.push(num);
             } else {
                 console.log("không phải số nguyên mời bạn nhập lại");
             }
         } while (count < 5);
-        console.log(numbers);
 
+        let max = numbers[0];
+        let index = 0;
+        for (let i = 0; i < numbers.length; i++) {
+            if (max < numbers[i]) {
+                max = numbers[i];
+                index = i;
+            }
+        }
+        console.log(`Phần tử lớn nhất là ${max}, vị trí là ${index}`);
     </script>
 </body>
 

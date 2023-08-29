@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        count = 0;
+        myArray = [];
+        do {
+            let input = +prompt("Nhập một số nguyên");
+            if (Number.isInteger(input)) {
+                myArray.push(input);
+                count++
+            } else {
+                console.log("Không phải số nguyên, mời bạn nhập lại");
+            }
+        } while (count < 5);
+        let max = myArray[0];
+        let total = 0;
+        let trungBinh;
+        for (let i = 0; i < myArray.length; i++) {
+            total += myArray[i];
+
+            if (max < myArray[i]) {
+                max = myArray[i]
+            }
+        } console.log(`Giá trị lớn nhất là ${max}`);
+        trungBinh = total / myArray.length;
+        console.log(`Giá trị trung bình của các phần tử là ${trungBinh}`);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = "tôi - là - tôi - là - ai";
+        let myArray = arr.split(" ");
+        console.log(myArray);
+        for (let i = 0; i < myArray.length; i++) {
+            if (myArray[i] === "-") {
+                myArray[i] = "_"
+            }
+        }
+        console.log(myArray.join(""));
+
+    </script>
+</body>
+
+</html>

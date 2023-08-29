@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        let text = prompt("Nhập 1 từ để dịch từ tiếng anh sang tiếng việt");
+        /* let text = prompt("Nhập 1 từ để dịch từ tiếng anh sang tiếng việt");
         let myArray = text.split(" ");
         let english = ["a", "b", "c", "hello", "good"];
         let vietNam = ["ây", "bi", "si", "xin chào", "tốt"];
@@ -25,7 +25,19 @@
                 alert("Không tìm thấy");
                 break;
             }
-        }
+        } */
+        /* cách ngắn gọn hơn
+        
+         let text = prompt("Nhập 1 từ để dịch từ tiếng anh sang tiếng việt");
+         let english = ["a", "b", "c", "hello", "good"];
+         let vietNam = ["ây", "bi", "si", "xin chào", "tốt"];
+         let index = english.indexOf(text);
+ 
+         if (index !== -1) {
+             console.log(`từ ${text} dịch sang tiếng việt là ${vietNam[index]}`);
+         } else {
+             alert("Không tìm thấy");
+         } */
 
     </script>
 </body>

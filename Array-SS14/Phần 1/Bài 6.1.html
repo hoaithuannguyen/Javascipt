@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = prompt(" moi nhap vao mot mang so nguyen cach nhau ")
+        console.log('num bằng : ', num);
+        let number = num.split(",");
+        console.log('number bằng : ', number);
+        let numm = prompt("moi nhap so ");
+        console.log('numm là:', numm);
+        console.log(typeof (numm));
+        if (number.indexOf(numm) !== -1) {
+            console.log(`${numm} is in the array`)
+        } else {
+            console.log(`${numm} is in the not array`)
+        }
+    </script>
+</body>
+
+</html>

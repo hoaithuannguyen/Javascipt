@@ -9,57 +9,58 @@
 
 <body>
     <script>
-        /*  let a = prompt("nhập");
-         let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-         let LOWER = 'abcdefghijklmnopqrstuvwxyz';
-         let result = [];
- 
-         for (let x = 0; x < a.length; x++) {
-             if (UPPER.indexOf(a[x]) !== -1) {
-                 result.push(a[x].toLowerCase());
-             }
-             else if (LOWER.indexOf(a[x]) !== -1) {
-                 result.push(a[x].toUpperCase());
-             }
-             else {
-                 result.push(str[x]);
-             }
-         }
-         console.log(result.join('')); */
-        /* 
-            indexOf là xác định xem phần tử có tồn tại trong mảng không
-            nếu tồn tại thì nó trả về giá trị là vị trí index
-            nếu không tồn tại thì nó trả về giá trị là -1
-                                                                 */
-        var str = 'abcDeFghaâ';
-        var UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var LOWER = 'abcdefghijklmnopqrstuvwxyz';
-        var result = [];
+        /* let a = prompt("nhập");
+        let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let LOWER = 'abcdefghijklmnopqrstuvwxyz';
+        let result = [];
 
-        for (var x = 0; x < str.length; x++) {
-            if (UPPER.indexOf(str[x]) !== -1) {
-                result.push(str[x].toLowerCase());
+        for (let x = 0; x < a.length; x++) {
+            if (UPPER.indexOf(a[x]) !== -1) {
+                result.push(a[x].toLowerCase());
             }
-            else if (LOWER.indexOf(str[x]) !== -1) {
-                result.push(str[x].toUpperCase());
+            else if (LOWER.indexOf(a[x]) !== -1) {
+                result.push(a[x].toUpperCase());
             }
             else {
-                result.push(str[x]);
+                result.push(a[x]);
             }
         }
-        console.log(result.join('-'));
-/* 
-                     b1: tạo biến str để nhập chuỗi
-                     b2: tạo biến có 1 chuỗi ký tự A-Z và a-z, mục đích để so sánh
-                     b3: tạo biến result có 1 mảng rỗng
-                     b4: đưa chuỗi nhập vào vòng lặp for để duyệt các phần tử
-                     b5: dùng indexof kiểm tra từng phần tử của chuỗi mà người dùng nhập xem có
-                      thuộc chuỗi upper or lower hay không
-                      (chuỗi ở đây là các biến chưa giá trị từ a-z)
-                     b6: xét điều kiện, đúng thì result.push đẩy phần từ vào mảng đã tạo
-                     cứ như vậy duyệt đến hết chuỗi
-                     b7: console.log chuyển đổi từ mảng sang chuỗi
-                                                                 */
+        console.log(result.join('')); */
+
+        let a = prompt("Nhập các chữ từ a-z , theo bảng chữ cái tiếng anh");
+        console.log(a);
+        console.log(typeof (a));
+        let upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let lower = 'abcdefghijklmnopqrstuvwxyz';
+        let text = "";
+
+        for (let i = 0; i < a.length; i++) {
+            if (upper.indexOf(a[i]) != -1) {
+                text += a[i].toLowerCase();
+            } else if (lower.indexOf(a[i]) != -1) {
+                text += a[i].toUpperCase();
+            } else {
+                text += a[i];
+            }
+        } console.log(text);
+
+        /*  indexOf là xác định xem phần tử có tồn tại trong mảng không
+         nếu tồn tại thì nó trả về giá trị là vị trí index
+         nếu không tồn tại thì nó trả về giá trị là - 1 */
+
+
+        /*
+                             b1: tạo biến str để nhập chuỗi
+                             b2: tạo biến có 1 chuỗi ký tự A-Z và a-z, mục đích để so sánh
+                             b3: tạo biến result có 1 mảng rỗng
+                             b4: đưa chuỗi nhập vào vòng lặp for để duyệt các phần tử
+                             b5: dùng indexof kiểm tra từng phần tử của chuỗi mà người dùng nhập xem có
+                              thuộc chuỗi upper or lower hay không
+                              (chuỗi ở đây là các biến chưa giá trị từ a-z)
+                             b6: xét điều kiện, đúng thì result.push đẩy phần từ vào mảng đã tạo
+                             cứ như vậy duyệt đến hết chuỗi
+                             b7: console.log chuyển đổi từ mảng sang chuỗi
+                                                                         */
     </script>
 </body>
 
