@@ -9,10 +9,15 @@
 
 <body>
     <script>
-        let arr = ['c', 's', 'c', '2', '6', '1'];
-        arr.reverse();
-        console.log(arr);
-        console.log(arr.join(""));
+        let a = prompt("");
+        let b = a.split(" ");
+        for (const key in b) {
+            console.log(b[key]);
+
+            b[key] = +b[key]
+        }
+        console.log(b);
+
     </script>
 </body>
 

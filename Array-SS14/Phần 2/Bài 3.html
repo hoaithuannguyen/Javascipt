@@ -9,13 +9,16 @@
 
 <body>
     <script>
-        let myArray = [1, 2, 3, "a", "d", 4, "c"];
-
+        let myArray = [1, 10, 3, "a", "d", 4, "c", "9", NaN];
+        let count = null;
         for (let i = 0; i < myArray.length; i++) {
-            if (typeof myArray[i] === 'number') {
-                console.log(myArray[i]);
+            if (typeof (myArray[i]) === 'number' && Number.isNaN(myArray[i]) === false) {
+                console.log("Ký tự số là:", myArray[i]);
+                count++
+            } else {
+                // console.log("Ký tự chữ là:", myArray[i]);
             }
-        }
+        } console.log("Tổng số ký tự số là : ", count);
 
 
     </script>

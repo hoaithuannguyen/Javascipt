@@ -9,13 +9,15 @@
 
 <body>
     <script>
-        let str = "xin chào các bạn nhé 10";
-
-        for (let i = 0; i < str.length; i++) {
-
-            console.log(str[i]);
-
+        let str = prompt("Nhập một chuỗi muốn đếm");
+        let myArray = str.split(" ");
+        let total = 0;
+        for (let i = 0; i < myArray.length; i++) {
+            if (myArray[i].trim() !== "") {
+                total++;
+            }
         }
+        console.log(`Số từ trong mảng là ${total} từ nhé`);
     </script>
 </body>
 
