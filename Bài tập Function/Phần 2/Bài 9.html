@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let arr = ["h", "l", "l"];
+        let character = ["l"];
+        let arr2 = ["e", "r"]
+        function findCharaterCount(a, b) {
+            let count = 0;
+            for (let j = 0; j < a.length; j++) {
+                if (b[0] == a[j]) {
+                    count++;
+                }
+            }
+            return count
+        }
+        findCharaterCount(arr, character)
+        console.log(`${character} xuất hiện ${findCharaterCount(arr2, character)} lần`);
+    </script>
+</body>
+
+</html>

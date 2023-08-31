@@ -9,14 +9,34 @@
 
 <body>
     <script>
-        let a = prompt("");
-        let b = a.split(" ");
-        for (const key in b) {
-            console.log(b[key]);
+        /*  let a = +prompt("Nhập");
+         if (Number.isInteger(a)) {
+             console.log(a, "là số nguyên");
+         } else {
+             console.log(a, "không phải là số nguyên");
+         } */
+        let myArr = [];
+        count = 0;
+        do {
+            let a = +prompt("Nhập");
+            if (Number.isInteger(a) && myArr.indexOf(a) == -1) {
+                myArr.push(a);
+                count++
+            }
+        } while (count < 5)
+        console.log(myArr);
 
-            b[key] = +b[key]
+        function maxArray(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (max < arr[i]) {
+                    max = arr[i];
+                }
+            }
+            return max;
         }
-        console.log(b);
+        maxArray(myArr);
+        console.log(maxArray(myArr));
 
     </script>
 </body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = prompt("Nhập chuỗi số");
+        let myArray = a.split(" ");
+        for (let i = 0; i < myArray.length; i++) {
+            myArray[i] = +myArray[i];
+        }
+        console.log(myArray);
+        // xét myArray để tìm ra số bé nhất
+        let min = myArray[0];
+        for (let j = 0; j < myArray.length; j++) {
+            if (min > myArray[j]) {
+                min = myArray[j];
+            }
+        }
+        console.log(min);
+
+
+
+
+    </script>
+</body>
+
+</html>

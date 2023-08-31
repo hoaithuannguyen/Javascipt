@@ -11,16 +11,12 @@
     <script>
         let a = prompt("");
         let b = a.split(" ");
-        for (const key in b) {
-            console.log(b[key]);
-
+        for (let key in b) {
             b[key] = +b[key]
         }
-        console.log(b);
         function minArray(arr) {
-            if (arr.length == 0)
-                return -1;
-
+            // if (arr.length == 0)
+            //     return -1;
             let min = arr[0];
             for (let i = 1; i < arr.length; i++) {
                 if (arr[i] < min) {
