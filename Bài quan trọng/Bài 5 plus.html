@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Session 18 phần 4.
+        let stores = [{ id: 1, name: "Milk", count: 100 },
+        { id: 2, name: "Yakult", count: 100 },
+        { id: 3, name: "Butter", count: 100, }
+        ];
+        let carts = [];
+        let input = "C";
+        let cartsIndex;
+        let storesIndex;
+        while (input != "E") {
+            input = prompt("Mời nhập C or R or U or D or E");
+            if (input == "C") {
+                let input1 = prompt("Mời nhập sản phẩm muốn mua");
+                for (let i = 0; i < stores.length; i++) {
+                    if (input1 == stores[i].name) {
+
+                        cartsIndex = carts.findIndex((item) => {
+                            return item.name == input1
+                        })
+                        console.log(cartsIndex);
+
+                        if (cartsIndex == -1) {
+                            carts.push({ id: stores[i].id, name: stores[i].name, count: 1 });
+                        } else {
+                            carts[cartsIndex].count++
+                        }
+                        stores[i].count = stores[i].count - 1;
+                    }
+                }
+
+            } else if (input == "R") {
+                console.log(stores, "giỏ cửa hàng");
+                console.log(carts, "trong giỏ carts");
+
+            } else if (input == "U") {
+
+                let input2 = +prompt("Mời nhập vị trí muốn update");
+
+                let input3 = +prompt("Mời nhập số lượng muốn thay đổi");
+                carts[input2].count = input3;
+
+
+                storesIndex = stores.findIndex((item) => {
+                    return item.id == carts[input2].id
+                })
+                console.log(storesIndex, "storesIndex");
+                stores[storesIndex].count = 100 - input3;
+
+                console.log(stores, "in trong U");
+                console.log(carts, "in trong U");
+
+            } else if (input == "D") {
+                let input4 = +prompt("Mời nhập vị trí muốn xóa");
+                storesIndex = stores.findIndex((item) => {
+                    return item.id == carts[input4].id
+                })
+                delete carts[input4];
+                stores[storesIndex].count = 100;
+
+                console.log(carts, "in lạiiiii carts");
+                console.log(stores, "in lạiiiii");
+
+
+            } else if (input == "E") {
+                console.log("Chào tạm biệt");
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

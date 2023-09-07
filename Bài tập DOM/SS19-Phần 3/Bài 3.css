@@ -1,0 +1,30 @@
+.container {
+    background-color: lightgreen;
+    width: 500px;
+    height: 200px;
+}
+
+.three {
+    display: flex;
+    justify-content: center;
+}
+
+.three-one {
+    width: 150px;
+    height: 150px;
+    background-color: lightcoral;
+}
+
+.three-two {
+    width: 150px;
+    height: 150px;
+    background-color: lightgoldenrodyellow;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.three-three {
+    width: 150px;
+    height: 150px;
+    background-color: lightsalmon;
+}

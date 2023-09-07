@@ -9,19 +9,20 @@
 
 <body>
     <script>
-        /*   function check(a) {
-  
-              if (a == 2) return;
-  
-              return a * check(a - 1);
-  
-          }
-  
-          let result = check(4)
-  
-          console.log(result); */
-        let a = 6 * undefined;
-        console.log(a);
+        function xinSoDt(callback) {
+            console.log("a gọi cho b xin số c");
+            console.log("b bảo đợi e tý");
+
+            sdt = "0123459999";
+            callback(sdt);
+        }
+
+
+        function daCoSo(sdtC) {
+            console.log(`gọi cho C ${sdtC}`);
+        }
+        xinSoDt(daCoSo);
+        console.log(daCoSo);
     </script>
 </body>
 

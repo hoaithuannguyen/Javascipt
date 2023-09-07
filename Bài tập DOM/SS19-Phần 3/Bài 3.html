@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Bài 3.css">
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div>Change background</div>
+        <div>Mouse over</div>
+        <div class="three">
+            <div id="div1" class="three-one" onmouseover="changeBackground1()" onmouseout="changeBackgroundOut()"></div>
+            <div id="div2" class="three-two" onmouseover="changeBackground2()" onmouseout="changeBackgroundOut()"></div>
+            <div id="div3" class="three-three" onmouseover="changeBackground3()" onmouseout="changeBackgroundOut()">
+            </div>
+        </div>
+    </div>
+    <script>
+        // let div1 = document.getElementById("div1");
+        // let div2 = document.getElementById("div2");
+        // let div3 = document.getElementById("div3");
+        let container = document.getElementById("container");
+
+        function changeBackground1() {
+            container.style.backgroundColor = "lightcoral";
+        }
+        function changeBackgroundOut() {
+            container.style.backgroundColor = "lightgreen";
+        }
+        function changeBackground2() {
+            container.style.backgroundColor = "lightgoldenrodyellow";
+        }
+        function changeBackground3() {
+            container.style.backgroundColor = "lightsalmon";
+        }
+    </script>
+</body>
+
+</html>

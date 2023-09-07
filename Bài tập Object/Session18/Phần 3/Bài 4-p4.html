@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let array = [];
+        do {
+            input = prompt("Mời nhập C or R or U or D or E");
+            if (input == "C") {
+                let input1 = prompt("Nhập tên");
+                let input2 = prompt("Nhập trạng thái");
+                let obj1 = {
+                    name: input1,
+                    complete: input2
+                }
+                array.push(obj1);
+                console.log(array);
+            } else if ((input == "R")) {
+                console.log(array);
+
+            } else if ((input == "U")) {
+                let input3 = +prompt("Mời nhập vị trí muốn update");
+                let input4 = prompt("Mời thay đổi name");
+                let input5 = prompt("Mời thay đổi complete");
+                array[input3].name = input4;
+                array[input3].complete = input5;
+                console.log(array, "update");
+            } else if ((input == "D")) {
+                let input6 = +prompt("Mời nhập vị trí muốn xóa");
+                delete array[input6];
+                console.log(array, "đã xóa");
+            }
+
+
+        } while (input != "E");
+        console.log("Chào bạn");
+    </script>
+</body>
+
+</html>

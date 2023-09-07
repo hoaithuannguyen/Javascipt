@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+
+    <script>
+        /*
+    Xây dựng form login gồm 2 thẻ input username và password
+    truy cập vào 2 thẻ input username và password và gán lại giá trị cho ô username
+    là rikkei,password là "để nông dân biết code"
+        */
+        let myDiv = document.getElementById("myDiv");// truy cập vào thẻ div
+        let input1 = document.createElement("input");//tạo thẻ input
+        let input2 = document.createElement("input");//tạo thẻ input
+        let input3 = document.createElement("br");//tạo thẻ br
+
+
+        input1.value = "nguyenhoaithuan";//gán giá trị cho input
+        input2.value = "123456";//gán giá trị cho input
+
+
+        myDiv.appendChild(input1);//đưa thẻ input vào trong thẻ div, có id myDiv
+        myDiv.appendChild(input3);
+        myDiv.appendChild(input2);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="div">This is a text.This is a text.This is a text.</div>
+    <button id="btn1">show</button>
+    <button id="btn2">hide</button>
+
+
+    <script>
+        let btn1 = document.getElementById("btn1");
+        let btn2 = document.getElementById("btn2");
+        let a = document.getElementById("div");
+
+        btn1.addEventListener("click", () => {
+            a.style.visibility = "visible"
+        })
+        btn2.addEventListener("click", () => {
+            a.style.visibility = "hidden"
+        })
+    </script>
+</body>
+
+</html>

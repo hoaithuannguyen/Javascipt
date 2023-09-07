@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        OOP; object ... ... :lập trình hướng đối tượng
+        4 tính chất:
+        1.đóng gói
+        2.kế thừa
+        3.trừu tượng
+        4.đa hình
+        Object : là 1 đối tượng
+        - gồm thuộc tính(property(màu lông,màu mắt)) và phương thức(method(bắt chuột))
+        Object là kiểu dữ liệu phức tạp(tham chiếu)
+        - Các cách để khởi tạo đối tượng
+        + let ,const,var
+            let student = {
+            name: "Ánh",
+            age: 25,
+            }
+        + function constructor
+            function Student(name, age) {
+            this.name = name;
+            this.age = age;
+            }
+            let st1 = new Student("Hoa", 25);
+            let st2 = new Student("Thái", 55);
+            console.log(st1);
+            console.log(st2);
+        + class
+        Object chứa các cặp Key(property) và Value,các cặp Key và Value được ngăn
+        cách nhau bởi dấu phẩy
+        -------------------------------------------------------------------------
+        CRUD với object
+        C: create
+        +để thêm thuộc tính cho đối tượng thì ('đối tượng' . 'thuộc tính' = 'giá trị')
+         let student = {
+            name: "Ánh",
+            age: 25
+        }
+        student.chieucao = 1.7;
+        console.log(student);
+        +Nếu trong 1 object có 2 cặp key và value thì cặp sau sẽ được in ra
+        let student = {
+            name: "Ánh",
+            age: 25,
+            name: "Hoa",
+        }
+        student.chieucao = 1.7;
+        student.chieucao = 12.7;
+        console.log(student);
+
+        R: read
+        +   let student = {
+            name: "Ánh",
+            age: 25,
+        }
+        for (let key in student) {
+            console.log(key);
+            console.log(student[key]);
+        }
+
+        U: update
+        + student.name = "Học Ánh";
+         đối tượng.thuộc tính = giá trị
+        + student["name"]="Tuệ Ánh"
+
+        D: delete
+        + delete đối tượng.thuộc tính
+         delete student.age;
+         console.log(student);
+** đặt tên theo quy tắc pascal case
+         */
+
+        /*  function Student(name, age) {
+             this.name = name;
+             this.age = age;
+         }
+         let st1 = new Student("Hoa", 25);
+         let st2 = new Student("Thái", 55);
+         console.log(st1);
+         console.log(st2);
+
+         ================
+         Các cách CLONE OBJECT
+         **deep clone && shallow clone
+         -shallow clone(clone nông)
+
+      + object assign({},obj2);   
+      +  let obj1 = {
+                name: "hoa"
+                }
+        let obj2 = {...obj1};
+            obj1.name = "anh";
+            console.log("22222222222", obj2);
+            console.log(obj1);
+         1. toán tử Spread
+            deep clone: chuyển sang kiểu JSON
+            + let obj1 = {
+                        name: "hoa",
+                        infor: {
+                        address:"Hà Nội",
+                        age:25
+                            }
+                        }
+                    let obj2 = JSON.parse(JSON.stringify(obj1));
+         ** tham chị bên stack, tham chiếu bên heap(liên quan đến bộ nhớ)
+  */
+        /* 
+        Hàm typeOf là hàm check kiểu của đổi tượng
+        
+        Những array [], đối tượng {} hay đối tượng null
+        
+        Thì kiểu đều là object
+        
+        Trong object lại có các kiểu riêng là object, date, string, array, number, boolean
+        
+        Hàm check Array.isArray là kiểm tra đối tượng có phải là mảng ko nên sẽ trả ra True or False
+        
+        Hàm TypeOf là lấy ra kiểu dữ liệu (data type) của đối tượng nên sẽ trả ra object
+        
+        Có 5 data type: object, string, number, boolean, function
+        
+        Trong object thì có 6 loại riêng như trên
+        */
+        let student = {
+            name: "Ánh",
+            age: 25,
+        }
+        for (let key in student) {
+            console.log(key);
+            console.log(student[key]);
+        }
+    </script>
+</body>
+
+</html>

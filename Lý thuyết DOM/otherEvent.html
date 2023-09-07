@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="myInput">
+    <select name="" id="gender">
+        <option value="nam">Nam</option>
+        <option value="nữ">Nữ</option>
+    </select>
+    <script>
+        let myInput = document.getElementById("myInput");
+        let mySelect = document.getElementById("gender");
+        //sự kiện khi giá trị phần tử thay đổi
+        mySelect.addEventListener("change", (e) => {
+            console.log(e.target.value);
+        })
+        // sự kiện khi nhập giá trị cho phần tử
+        myInput.addEventListener("input", (e) => {
+            console.log(e.target.value);
+        })
+
+
+    </script>
+</body>
+
+</html>

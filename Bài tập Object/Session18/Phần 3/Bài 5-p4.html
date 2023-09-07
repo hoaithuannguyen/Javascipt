@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let stores = [{ id: 1, name: "Milk", count: 100 },
+        { id: 2, name: "Yakult", count: 100 },
+        { id: 3, name: "Butter", count: 100, }
+        ];
+        //khai báo mảng để chứa phần tử được thêm vào
+        let carts = []
+        //điều kiện vòng lặp while
+        let input = "C";
+        while (input != "E") {
+            input = prompt("Mời nhập C or R or U or D or E");
+            if (input == "C") {
+                let input1 = prompt("Mời nhập sản phẩm muốn mua");
+                //lặp qua mảng stores để kiểm tra sản phẩm có tồn tại
+                for (let i = 0; i < stores.length; i++) {
+                    //sản phẩm tồn tại trong mảng stores
+                    if (input1 == stores[i].name) {
+                        //Tìm chỉ số của phần tử trong mảng carts
+                        //nếu có thì trả về chỉ số nếu không thì trả về -1
+                        let cartsIndex = carts.findIndex((item) => {
+                            return item.name == input1
+                        })
+                        console.log(cartsIndex);
+                        /* nếu không có thì thêm mới(cartsIndex trả về -1 là không có phần tử 
+                        trùng trong mảng) */
+                        if (cartsIndex == -1) {
+                            carts.push({ id: stores[i].id, name: stores[i].name, count: 1 });
+                        } else {
+                            //nếu có thì chỉ tăng count của phần tử
+                            carts[cartsIndex].count++
+                        }
+                        //giảm count của phần tử trong mảng stores
+                        stores[i].count = stores[i].count - 1;
+                    }
+                }
+                console.log(stores, "giỏ cửa hàng");
+                console.log(carts, "trong giỏ carts");
+            } else {
+                break;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

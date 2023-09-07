@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Toggle Dark Mode</title>
+</head>
+<style>
+    body {
+        background-color: #ffffff;
+        color: #000000;
+        transition: background-color 0.5s, color 0.5s;
+    }
+
+    .dark-mode {
+        background-color: #000000;
+        color: #ffffff;
+    }
+</style>
+
+<body>
+    <button id="toggleButton">Toggle dark mode</button>
+    <div id="content">
+        <h1>Hello World</h1>
+        <p>This is a sample text.</p>
+    </div>
+    <script>
+        // Lấy tham chiếu đến nút "Toggle dark mode" và nội dung giao diện
+        var toggleButton = document.getElementById("toggleButton");
+        var content = document.getElementById("content");
+
+        // Biến để theo dõi trạng thái dark mode
+        var isDarkMode = false;
+
+        // Hàm xử lý sự kiện click
+        function toggleDarkMode() {
+            if (isDarkMode) {
+                // Nếu đang ở chế độ dark mode, chuyển về chế độ bình thường
+                content.classList.remove("dark-mode");
+            } else {
+                // Nếu không ở chế độ dark mode, bật chế độ dark mode
+                content.classList.add("dark-mode");
+            }
+            // Đảo ngược trạng thái dark mode
+            isDarkMode = !isDarkMode;
+        }
+
+        // Gắn hàm xử lý sự kiện vào nút "Toggle dark mode"
+        toggleButton.addEventListener("click", toggleDarkMode);
+
+    </script>
+</body>
+
+</html>

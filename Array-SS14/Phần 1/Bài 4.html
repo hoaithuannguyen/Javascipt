@@ -9,10 +9,12 @@
 
 <body>
     <script>
-        let input = prompt("Mời nhập 10 số nguyên tố");
+        let input = prompt("Mời nhập 10 số nguyên");
         let myArray = input.split(" ");
         myArray.reverse();
         console.log(myArray);
+        console.log(typeof (myArray));
+        console.log(Array.isArray(myArray));
 
     </script>
 </body>
