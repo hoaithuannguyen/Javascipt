@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input1">
+    <div id="div1"></div>
+
+    <script>
+        let input = document.getElementById("input1");
+        let div1 = document.getElementById("div1");
+        let text = input.value;
+        input.oninput = hienThi;
+        function hienThi() {
+            text = input.value;
+            div1.innerHTML = text;
+            div1.style.backgroundColor = "lightgreen"
+        }
+    </script>
+</body>
+
+</html>

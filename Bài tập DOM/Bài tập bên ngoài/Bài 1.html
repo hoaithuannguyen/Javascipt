@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <script>
+        let div1 = document.getElementById("div1"); //truy cập đến thẻ div1
+        let div2 = document.createElement("div");   //tạo thẻ div2
+        div1.appendChild(div2);                     //thẻ div2 đã nằm trong thẻ div1
+        div2.innerHTML = "Nhập nội dung tìm kiếm";  //gắn giá trị cho div2 rồi dùng inner để hiển thị.
+
+        let input1 = document.createElement("input");//tạo thẻ input
+        div2.appendChild(input1);                    //đưa input1 vào div2
+
+        let span = document.createElement("span");   //tạo thẻ span
+        div2.appendChild(span);                     //thẻ span đã nằm trong thẻ div2
+        span.innerHTML = "Ẩn tìm kiếm nâng cao";   //gắn giá trị cho span rồi dùng inner để hiển thị.
+
+        let select = document.createElement("select");   //tạo thẻ select
+        div1.appendChild(select);                        //thẻ select đã nằm trong thẻ div1
+
+        let option1 = document.createElement("option");   //tạo thẻ option
+        let option2 = document.createElement("option");   //tạo thẻ option
+
+        select.appendChild(option1);                     //thẻ span đã nằm trong thẻ div2
+        select.appendChild(option2);                    //thẻ span đã nằm trong thẻ div2
+
+        select.style.marginBottom = "10px";             //set margin cho select
+
+        option1.innerHTML = "Nam";              //gắn giá trị cho option1 rồi dùng inner để hiển thị.
+        option2.innerHTML = "Nữ";                //gắn giá trị cho option rồi dùng inner để hiển thị.
+
+
+
+
+        let button = document.createElement("button");   //tạo thẻ button
+        button.style.display = "block";         //chuyển đổi thẻ button sang block, mặc định là inline
+        div1.appendChild(button);                        //thẻ button đã nằm trong thẻ div1
+        button.innerHTML = "Tìm kiếm";  //gắn giá trị cho button rồi dùng inner để hiển thị.
+
+        console.log(div1);
+
+    </script>
+</body>
+
+</html>

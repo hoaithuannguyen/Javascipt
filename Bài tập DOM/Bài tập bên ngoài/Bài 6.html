@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+    <!-- <span id="span" onclick="congTong()">=</span> -->
+    <span id="span">=</span>
+    <input type="text" id="input3">
+
+    <script>
+        let input1 = document.getElementById("input1");
+        let input2 = document.getElementById("input2");
+        let input3 = document.getElementById("input3");
+        let span = document.getElementById("span");
+
+        span.addEventListener("click", () => {
+            let text1 = +input1.value;
+            let text2 = +input2.value;
+            let text3 = text1 + text2;
+            input3.value = text3;
+        })
+        // function congTong() {
+        //     let text1 = +input1.value;
+        //     let text2 = +input2.value;
+        //     let text3 = text1 + text2;
+        //     input3.value = text3;
+        // }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>222222</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <input type="text" id="input" placeholder="Mời nhập!">
+    <button onclick="addNewOrEdit()">Add</button>
+    <table border="1px" cellpadding="10px" cellspacing="10px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script>
+        let flag = true;
+        let selectedIndex;
+        arrays = [{
+            id: uuid(),
+            name: "việc 1"
+        }, {
+            id: uuid(),
+            name: "việc 2"
+        }, {
+            id: uuid(),
+            name: "việc 3"
+        }
+        ];
+
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+
+        function showArrays() {
+            let result = "";
+            for (let i = 0; i < arrays.length; i++) {
+                result +=
+                    `
+                <tr>
+                    <td>${arrays[i].id}</td>
+                    <td>${arrays[i].name}</td>
+                    <td><button onclick=showForm(${arrays[i].id})>Edit</button></td>
+                    <td><button onclick=deleteArray(${arrays[i].id})>Delete</button></td>
+                </tr>   
+                     `
+            }
+            document.getElementById("tbody").innerHTML = result;
+        }
+        showArrays();
+
+        function addNewArray() {
+            let input = document.getElementById("input").value;
+            let obj = {
+                id: uuid(),
+                name: input
+            }
+            arrays.push(obj);
+            showArrays();
+            document.getElementById("input").value = "";
+        }
+
+        function deleteArray(id) {
+            console.log(id);
+            for (let i = 0; i < arrays.length; i++) {
+                if (arrays[i].id == id) {
+                    arrays.splice(i, 1);
+                }
+            }
+            showArrays();
+        }
+
+        function showForm(id) {
+            console.log(id);
+            flag = false;
+            let input = document.getElementById("input");
+            for (let i = 0; i < arrays.length; i++) {
+                if (arrays[i].id == id) {
+                    input.value = arrays[i].name;
+                }
+            }
+            selectedIndex = id;
+        }
+
+        function activeSave() {
+            let input = document.getElementById("input");
+            for (let i = 0; i < arrays.length; i++) {
+                if (arrays[i].id == selectedIndex) {
+                    arrays[i].name = input.value;
+                }
+            }
+            showArrays();
+            flag = true;
+            document.getElementById("input").value = "";
+        }
+
+        function addNewOrEdit() {
+            if (flag) {
+                addNewArray();
+            } else {
+                activeSave();
+            }
+        }
+    </script>
+</body>
+
+</html>

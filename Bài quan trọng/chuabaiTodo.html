@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài chữa todoList</title>
+</head>
+<style>
+    tr,
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <input type="text" placeholder="Mời bạn nhập công việc!" id="job">
+    <button onclick="addJob()">ADD</button>
+
+    <table border="1px" cellpadding="15px" cellspacing="5px">
+        <thead>
+            <tr>
+                <th> STT </th>
+                <th> CÔNG VIỆC </th>
+                <th> ID </th>
+                <th colspan="2"> HÀNH ĐỘNG </th>
+            </tr>
+        </thead>
+        <tbody id="body">
+        </tbody>
+    </table>
+    <script>
+        let jobs = [];
+        let flag = true;
+        let idUpdate;
+        //function thêm công việc
+        function addJob() {
+            let job = document.getElementById("job").value;
+            let jobInfor;
+
+            if (flag) {
+                jobInfor = {
+                    job: job,
+                    id: uuid(),
+                }
+                jobs.push(jobInfor);
+                //sau khi thêm vào xong gọi hàm render ngay để hiển thị
+                renderJobs(jobs);
+                document.getElementById("job").value = "";
+            } else {
+                jobInfor = {
+                    job: job,
+                    id: idUpdate,
+                }
+                for (let i = 0; i < jobs.length; i++) {
+                    if (jobs[i].id == idUpdate) {
+                        jobs[i] = jobInfor
+                        renderJobs(jobs);
+                        flag = true;
+                        document.getElementById("job").value = "";
+                    }
+                }
+            }
+        }
+        // function tạo id cho mỗi công việc để khi sửa xoá theo id mà xoá sửa.
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+        // function hiển thị danh sách công việc
+        function renderJobs(listJobs) {
+            let text = "";
+            for (let i = 0; i < listJobs.length; i++) {
+                text +=
+                    `
+                    <tr> 
+                        <td> ${i + 1} </td>
+                        <td> ${listJobs[i].job}</td>
+                        <td> ${listJobs[i].id} </td>
+                        <td onclick=updateJob(${listJobs[i].id})> Sửa</td>
+                        <td onclick=deleteJob(${listJobs[i].id})> Xoá </td>
+                    </tr>
+                `
+            }
+            document.getElementById("body").innerHTML = text;
+        }
+        // function xoá công việc
+        function deleteJob(id) {
+            for (let i = 0; i < jobs.length; i++) {
+                if (jobs[i].id == id) {
+                    jobs.splice(i, 1);
+                    renderJobs(jobs);
+                }
+            }
+        }
+        // function update công việc
+        function updateJob(id) {
+            flag = false;
+            for (let i = 0; i < jobs.length; i++) {
+                if (jobs[i].id == id) {
+                    document.getElementById("job").value = jobs[i].job;
+                    idUpdate = jobs[i].id;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

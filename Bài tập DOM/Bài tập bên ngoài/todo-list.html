@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="input1">
+        <button onclick="addNew()">Thêm</button>
+        <div id="div1"></div>
+        <input id="input2"></input>
+        <button id="saveBtn" onclick="actionSave()">Lưu</button>
+    </div>
+    <script>
+
+        let div1 = document.getElementById("div1");
+        let saveBtn = document.getElementById("saveBtn")
+        let myArray = [1, 2, 3];
+        function show() {
+            let result = "";
+
+            for (let i = 0; i < myArray.length; i++) {
+                result += myArray[i] + '<button onclick="showDivUpdate (' + i + ')">Sửa</button>' + '<button onclick="deleteElement (' + i + ')">Xóa</button>' + '<br>';
+            }
+            div1.innerHTML = result;
+        }
+        show();
+
+        function addNew() {
+            let input1 = document.getElementById("input1");
+            let input1in = input1.value;
+            myArray.push(input1in);
+            show();
+            input1.value = "";
+        }
+
+        function deleteElement(index) {
+            myArray.splice(index, 1);
+            show();
+
+        }
+
+        let input2 = document.getElementById("input2");
+        input2.style.display = "none";
+        let selectedIndex;
+        let arr;
+
+        function showDivUpdate(index) {
+            selectedIndex = index;
+            input2.style.display = "block";
+            input2.value = myArray[index];
+        }
+        function actionSave() {
+            myArray[selectedIndex] = input2.value
+            show()
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    input {
+        margin-bottom: 5px;
+    }
+
+    button {
+        margin-bottom: 5px;
+    }
+
+    span {
+        margin-right: 5px;
+    }
+
+    tr,
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <span>ID</span><input type="text" id="input1" placeholder="Auto"><br>
+    <span>NAME</span><input type="text" id="input2" placeholder="Write here!"><br>
+    <span>AGE</span><input type="text" id="input3" placeholder="Write here!"><br>
+    <span>ADDRESS</span><input type="text" id="input4" placeholder="Write here!"><br>
+    <span>PHONE</span><input type="text" id="input5" placeholder="Write here!"><br>
+    <button onclick="addNewOrEdit()">Add</button>
+
+    <table border="1px" cellpadding="10px" cellspacing="10px">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script>
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+
+        let students = [
+            { id: uuid(), name: "Nguyễn A", age: 18, address: "Quảng Ninh", phone: "0901234566" },
+            { id: uuid(), name: "Nguyễn B", age: 28, address: "Bến Tre", phone: "0901236666" }
+        ];
+
+        function showStudents() {
+            let result = "";
+            for (let i = 0; i < students.length; i++) {
+                result +=
+                    `
+                <tr>
+                    <td>${students[i].id}</td>
+                    <td>${students[i].name}</td>
+                    <td>${students[i].age}</td>
+                    <td>${students[i].address}</td>
+                    <td>${students[i].phone}</td>
+                    <td><button onclick="showFormUpdate(${students[i].id})">Edit</button></td>
+                    <td><button onclick="deleteStudent(${students[i].id})">Delete</button></td>
+                </tr>
+                `
+            }
+            document.getElementById("tbody").innerHTML = result;
+        }
+        showStudents();
+        let flag = true;
+        function addStudent() {
+            let input1 = document.getElementById("input1").value;
+            let input2 = document.getElementById("input2").value;
+            let input3 = document.getElementById("input3").value;
+            let input4 = document.getElementById("input4").value;
+            let input5 = document.getElementById("input5").value;
+            let student = {
+                id: uuid(),
+                name: input2,
+                age: input3,
+                address: input4,
+                phone: input5
+            }
+            students.push(student);
+            showStudents();
+            document.getElementById("input1").value = "";
+            document.getElementById("input2").value = "";
+            document.getElementById("input3").value = "";
+            document.getElementById("input4").value = "";
+            document.getElementById("input5").value = "";
+
+        }
+
+        function deleteStudent(id) {
+            console.log(id);
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].id == id) {
+                    students.splice(i, 1);
+                }
+                showStudents();
+            }
+        }
+        let selectedIndex;
+        function showFormUpdate(id) {
+            // b1: cắm cờ
+            // b2: gắn dữ liệu
+            // b3:biến chung gian
+            flag = false;
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].id == id) {
+                    document.getElementById("input1").value = students[i].id;
+                    document.getElementById("input2").value = students[i].name;
+                    document.getElementById("input3").value = students[i].age;
+                    document.getElementById("input4").value = students[i].address;
+                    document.getElementById("input5").value = students[i].phone;
+                }
+            }
+            selectedIndex = id;
+        }
+
+        function activeSave() {
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].id == selectedIndex) {
+                    students[i].id = document.getElementById("input1").value;
+                    students[i].name = document.getElementById("input2").value;
+                    students[i].age = document.getElementById("input3").value;
+                    students[i].address = document.getElementById("input4").value;
+                    students[i].phone = document.getElementById("input5").value;
+                }
+            }
+            showStudents();
+            flag = true;
+            document.getElementById("input1").value = "";
+            document.getElementById("input2").value = "";
+            document.getElementById("input3").value = "";
+            document.getElementById("input4").value = "";
+            document.getElementById("input5").value = "";
+        }
+
+        function addNewOrEdit() {
+            if (flag) {
+                addStudent();
+            } else {
+                activeSave();
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

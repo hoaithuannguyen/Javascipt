@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btn1 {
+        display: block;
+        margin-top: 10px;
+    }
+
+    #a2 {
+        display: none;
+    }
+
+    #div2 {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="div1">Nhập nội dung tìm kiếm
+        <input type="text">
+        <a class="a1" onclick="timKiemNangCao()">Tìm kiếm nâng cao</a>
+        <a id="a2" onclick="anTimKiemNangCao()">Ẩn tìm kiếm nâng cao</a>
+        <div id="div2">
+            <select>
+                <option value="">Nam</option>
+                <option value="">Nữ</option>
+            </select>
+        </div>
+        <button class="btn1">Tìm kiếm</button>
+
+    </div>
+
+
+    <script>
+        let a1 = document.getElementsByClassName("a1");
+        let a2 = document.getElementById("a2");
+        let div2 = document.getElementById("div2");
+
+        function timKiemNangCao() {
+            div2.style.display = "block";
+            a2.style.display = "inline";
+            a1[0].style.display = "none";
+        }
+
+        function anTimKiemNangCao() {
+            div2.style.display = "none";
+            a2.style.display = "none";
+            a1[0].style.display = "inline";
+        }
+    </script>
+</body>
+
+</html>

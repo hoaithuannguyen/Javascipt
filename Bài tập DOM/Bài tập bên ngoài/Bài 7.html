@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div2 {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="div1" oncopy="copy()">hello,xin chào các bạn</div>
+    <div id="div2">bạn đã copy xong</div>
+    <script>
+        let div1 = document.getElementById("div1");
+        let div2 = document.getElementById("div2");
+        function copy() {
+            div2.style.display = "block"
+            setTimeout(() => {
+                div2.style.display = "none"
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div id="container">
+        <h2 id="h2">Create New Item</h2>
+        <div id="div2">
+            <span>Item</span>
+            <input type="text" id="input1" oninput="suKien()">
+            <button onclick="addText()">Add</button>
+        </div>
+        <ul id="ul"></ul>
+    </div>
+
+    <script>
+        let input = document.getElementById("input1");
+        input.style.backgroundColor = "lightgreen";
+        let text = input.value;
+        function suKien() {
+            text = input.value;
+            if (text == "") {
+                input.style.backgroundColor = "lightgreen";
+            } else {
+                input.style.backgroundColor = "white";
+            }
+        }
+        function addText() {
+            text = input.value;
+            let li = document.createElement("li");
+            let ul = document.getElementById("ul");
+            ul.appendChild(li);
+            li.innerHTML = text;
+        }
+
+    </script>
+</body>
+
+</html>
