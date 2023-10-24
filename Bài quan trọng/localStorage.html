@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="">Email</label><br>
+        <input type="text" name="" id="email"><br>
+        <label for="">Password</label><br>
+        <input type="text" name="" id="password"><br>
+        <button onclick="addOrEdit(event)">Login</button>
+    </form>
+    <table border="1px" cellpadding="10px" cellspacing="10px">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th colspan="2">Action</th>
+
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <span onclick="toPrevPage()">Return</span>
+    <span id="pagination"></span>
+    <span onclick="toNextPage()">Next</span>
+
+    <script>
+        //tạo ra 2 biến global để xác định số trang hiện tai và số phần tử trên 1 trang
+        let currentPage = 1;
+        let itemsPerPage = 2;
+
+        let flag = true;
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+
+        function add() {
+            console.log("add");
+            let obj = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                id: uuid()
+            }
+            students.push(obj);
+            localStorage.setItem("students", JSON.stringify(students));
+            renderStudents();
+        }
+
+        function renderStudents() {
+            //tính tổng số trang
+            let totalPage = Math.ceil(students.length / itemsPerPage);
+
+            //render số trang
+            let pages = ""
+            for (let i = 1; i <= totalPage; i++) {
+                pages +=
+                    `
+                    <a href="#" onclick ="changePage(${i})">${i}</a>
+                     `
+            }
+            document.getElementById("pagination").innerHTML = pages;
+
+            //chỉ số phần tử bắt đầu và kết thúc trên 1 trang
+            let startIndex = (currentPage - 1) * itemsPerPage;
+            let endIndex = currentPage * itemsPerPage;
+            if (endIndex > students.length) {
+                endIndex = students.length;
+            }
+
+            //render phần tử theo số trang
+            let result = "";
+            for (let i = startIndex; i < endIndex; i++) {
+                result +=
+                    `
+                    <tr>
+                    <td>${students[i].id}</td>
+                    <td>${students[i].email}</td>
+                    <td>${students[i].password}</td>
+                    <td><button onclick="showFormUpdate(${students[i].id})">Edit</button></td>
+                    <td><button onclick="deleteStudent(${students[i].id})">Delete</button></td>
+                    </tr>
+                     `
+            }
+            document.getElementById("tbody").innerHTML = result;
+        }
+        renderStudents();
+
+        function deleteStudent(id) {
+            console.log(id);
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].id == id) {
+                    students.splice(i, 1);
+                }
+            }
+            localStorage.setItem("students", JSON.stringify(students));
+            renderStudents();
+        }
+        let selectedIndex;
+        function showFormUpdate(id) {
+            console.log("showFormUpdate");
+            //cắm cờ
+            flag = false;
+            //in từ bảng lên input thông qua ID
+            for (let i = 0; i < students.length; i++) {
+                if (id == students[i].id) {
+                    document.getElementById("email").value = students[i].email;
+                    document.getElementById("password").value = students[i].password;
+                }
+            }
+            // gắn chỉ số index
+            selectedIndex = id;
+        }
+
+        function save() {
+            for (let i = 0; i < students.length; i++) {
+                if (selectedIndex == students[i].id) {
+                    students[i].email = document.getElementById("email").value;
+                    students[i].password = document.getElementById("password").value;
+                }
+            }
+            localStorage.setItem("students", JSON.stringify(students));
+            renderStudents();
+            flag = true;
+        }
+
+        function addOrEdit(e) {
+            e.preventDefault();
+            if (flag) {
+                add();
+            } else {
+                save();
+            }
+        }
+
+        //function chuyển trang
+        function changePage(page) {
+            currentPage = page;
+            renderStudents();
+        }
+
+        function toPrevPage() {
+            currentPage--;
+            if (currentPage < 1) {
+                currentPage = 1
+            }
+            renderStudents();
+        }
+
+        function toNextPage() {
+            currentPage++;
+            let totalPage = Math.ceil(students.length / itemsPerPage);
+            if (currentPage > totalPage) {
+                currentPage = totalPage
+            }
+            renderStudents();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function findBigNumber(inputString) {
+            // Khởi tạo biến largestUniqueNumber với giá trị ban đầu là -1.
+            let bigNumber = -1;
+
+            // Bắt đầu vòng lặp để duyệt qua từng ký tự trong chuỗi inputString.
+            for (let i = 0; i < inputString.length; i++) {
+                // Chuyển đổi ký tự hiện tại thành số nguyên và gán vào currentNumber.
+                let currentNumber = parseInt(inputString[i]);
+
+                // Kiểm tra xem currentNumber có lớn hơn số lớn nhất hiện tại không.
+                // Đồng thời, kiểm tra xem currentNumber có phải là số duy nhất trong chuỗi không.
+                if (currentNumber > bigNumber && inputString.indexOf(currentNumber) === inputString.lastIndexOf(currentNumber)) {
+                    // Nếu các điều kiện đều đúng, cập nhật largestUniqueNumber với giá trị mới.
+                    bigNumber = currentNumber;
+                }
+            }
+
+            // Sau khi kết thúc vòng lặp, trả về số lớn nhất và duy nhất tìm được.
+            return bigNumber;
+        }
+
+        // Gọi hàm findLargestUniqueNumber với chuỗi "12344".
+        let inputString = "12344";
+        let bigNumber = findBigNumber(inputString);
+
+        // In ra kết quả.
+        console.log(bigNumber);
+
+    </script>
+</body>
+
+</html>

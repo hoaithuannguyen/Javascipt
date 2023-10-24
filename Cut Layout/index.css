@@ -5,7 +5,7 @@
 }
 
 body {
-    width: 100%;
+    width: 80rem;
     margin: 0 auto;
 }
 
@@ -85,12 +85,11 @@ body {
 }
 
 .next-one {
-
     background-color: white;
 }
 
 .next-two {
-
+    margin-right: 16px;
     background-color: white;
 }
 
@@ -118,6 +117,52 @@ body {
     left: 9rem;
     top: 1.2rem;
 }
+
+.featured-view {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.featureproducts {
+    padding-left: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.four-images {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.viewallproducts {
+    padding-right: 1rem;
+    padding-right: 2rem;
+    padding-top: 0.5px;
+}
+
+.four-images-one {
+    width: 19rem;
+    height: 21rem;
+    border: 1px solid gainsboro;
+    position: relative;
+    margin-left: 0.6rem;
+}
+
+.img-cover {
+    width: 18rem;
+    height: 20rem;
+    position: absolute;
+    top: 0.5rem;
+}
+
+.four-note {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.four-note1 {}
 
 /* inline:các thẻ inline đều nằm trên 1 dòng, width = độ dài nội dung,không set
 được width, height

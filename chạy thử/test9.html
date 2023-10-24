@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2 {
+        font-size: 70px;
+    }
+
+    .img {
+        width: 100px;
+        height: 100px;
+        border: 1px solid;
+        border-radius: 15px;
+    }
+
+    .div1 {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #input1 {
+        width: 900px;
+        height: 30px;
+        margin-top: 30px;
+        border-radius: 10px;
+        border: solid rgb(109, 109, 230);
+    }
+
+    .heatcard {
+        font-size: 30px;
+    }
+
+    .card2 {
+        margin-top: 40px;
+    }
+
+    .cvcvcard {
+        margin-left: 390px;
+        font-size: 20px;
+    }
+
+    .detetcard {
+        font-size: 20px;
+    }
+
+    .datets {
+        width: 450px;
+        margin-top: 20px;
+        border-radius: 10px;
+        height: 30px;
+        border: solid rgb(109, 109, 230);
+    }
+
+    .cvc {
+        margin-left: 30px;
+        border-radius: 10px;
+        height: 30px;
+        width: 410px;
+        border: solid rgb(109, 109, 230);
+    }
+
+    .buttomcard {
+        margin-top: 60px;
+        block-size: 40px;
+        inline-size: 200px;
+        border-radius: 50px;
+        background-color: rgb(132, 129, 245);
+        color: white;
+        border: solid rgb(157, 157, 249);
+    }
+
+    .cardtable {
+        margin-top: 100px;
+    }
+</style>
+
+<body>
+    <section>
+        <h2>Select Card</h2>
+        <div class="div1">
+            <img src="./anh/z4686191427089_6bfc4335bcd1f0e86739f8b90c469db4.jpg" alt="anh" class="img"
+                onclick="click()" />
+            <img src="./anh/z4686189914123_a7af7613828c372cb7f55602accb33c7.jpg" alt="anh " class="img"
+                onclick="click()" />
+            <img src="./anh/z4686188625643_9346ad1f69ea967deb1590bc86544b23.jpg" alt="anh" class="img"
+                onclick="click()" />
+            <img src="./anh/z4686192886014_a7e0a6064ee07c4920431a5463a5a976.jpg" alt="anh" class="img"
+                onclick="click()" />
+            <img src="./anh/z4686196688103_27cb41c85fdf411deaa3072deaf5f911.jpg" alt="anh" class="img"
+                onclick="click()">
+        </div>
+        <hr />
+        <div class="card1">
+            <label class="heatcard">Card Number</label><br />
+            <input type="number" id="input1" />
+        </div>
+        <div class="card2">
+            <span class="detetcard">Expiry Date</span>
+            <span class="cvcvcard">CVC/CVV</span>
+            <div>
+                <input type="date" class="datets" />
+                <input type="number" class="cvc" />
+            </div>
+
+        </div>
+        <button class="buttomcard" onclick="addcard()">Save</button>
+    </section>
+    <table border="1px" cellpadding="15px" cellspacing="5px" class="cardtable">
+        <thead>
+            <tr>
+                <th>Card Img</th>
+                <th>Card Number </th>
+                <th>Expiry Date</th>
+                <th>CVV</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody class="cardbody">
+        </tbody>
+    </table>
+    <script>
+        let arr = []
+
+        function clickImage(index) {
+            for (let j = 0; j < 5; j++) {
+                if (j != index) {
+                    a[j].style.border = " solid"
+                    a[index].style.border = " 2px solid blue"
+                }
+            }
+        }
+
+        function addcard() {
+            let cards = document.getElementById("input1").value;
+            let cardccv = document.getElementById("cvc").value;
+            let cardInfor = {
+                cardnumber: cards,
+                ccv: cardccv,
+            }
+            arr.push(cardInfor);
+            renderJobs(arr);
+        }
+
+        function renderJobs(listcard) {
+            let text1 = ""
+            for (let i = 0; i < listcard.length; i++) {
+                text1 += `
+                        <tr>
+                            <td><img src="./anh/z4686191427089_6bfc4335bcd1f0e86739f8b90c469db4.jpg" alt="" style="width: 80px; height: 70px;"></td>
+                            <td>${listcard[i].cardnumber}</td>
+                            <td>gsdgs</td>
+                            <td>${listcard[i].ccv}</td>
+                            <td>
+                                <button>view</button>
+                                <button>edit</button>
+                                <button>delete</button>
+                            </td>
+                        </tr>
+                    `;
+            }
+            document.querySelector(".cardbody").innerHTML = text1;
+        }
+    </script>
+</body>
+
+</html>

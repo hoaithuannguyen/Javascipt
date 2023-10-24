@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    + map
+    1. tạo ra mảng mới
+    2. số lượng phần tử bằng số lượng phần tử ban đầu
+
+    + filter : xét theo điều kiện để lọc,nếu ko có điều kiện thì trả về mảng ban đầu
+    + foreach : chỉ làm việc với các phần tử trong mảng ban đầu, ko tạo ra mảng mới
+
+    +preventDefault(): ngăn chặn hành vì submit lên form
+    + new Set: tạo ra 1 object có các phần tử không trùng nhau,sau đó dùng array.from để thành mảng
+        let arr = [1, 1, 1, 1, 3, 3, 3, 54, 54, 54,];
+        let result = new Set(arr);
+        console.log(Array.from(result));
+        -- tìm thủ công hơn bằng cách dùng indexOf
+            let arr = [1, 1, 1, 1, 3, 3, 3, 54, 54, 54];
+            let newArray = [];
+            for (let i = 0; i < arr.length; i++) {
+            if (newArray.indexOf(arr[i]) == -1) {
+            newArray.push(arr[i]);
+         }
+        }
+    console.log(newArray);
+
+    + reduce(): nhận về 2 đối số
+        1. callback
+        2. initial ( giá trị khởi tạo)
+        --    let numbers = [4,9,7];
+                let result = numbers.reduce((acc,item) => {
+                return acc + item
+            },)
+        -- let products = [
+             {
+            name: "iphone5",
+            price: 5000,
+            quality: 6
+            },
+            {
+            name: "iphone6",
+            price: 6000,
+            quality: 6
+            },
+            {
+            name: "iphone8",
+            price: 8000,
+            quality: 6
+            }
+            ];
+            
+            let result = products.reduce((acc, item) => {
+            return acc + item.price * item.quality;
+            }, 0)
+            console.log(result);
+        +join() gộp các phần tử trong mảng thành chuỗi
+        +some: trả về true false
+            chỉ cần 1 phần tử đúng dkien thì trả về true
+        +every: phải thỏa mãn hết mới trả về true
+        +find: tìm kiếm rồi trả về giá trị thỏa mãn điều kiện
+     -->
+</body>
+<script>
+
+</script>
+
+</html>

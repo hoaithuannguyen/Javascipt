@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Lưu trữ dữ liệu trên trình duyệt có 3 khu vực
+    1.LocalStorage
+    -Dung lượng khoảng 5MB
+    1mb = 1024kb
+    1kb = 1024b(byte)
+    -Khi lưu dữ liệu sẽ không bị mất đi khi đóng hay tắt trình duyệt
+
+    2.sessionStorage
+    Dung lượng khoảng 3-5MB
+    -Chỉ lưu dữ liệu khi còn phiên làm việc 
+
+    3.cookies
+    Dung lượng khoảng 3KB
+    -Mình có thể set hạn tồn tại cho nó(expire) (đặt được time xóa nó)
+    -Ghi nhớ đăng nhập
+    -Khảo sát người dùng tìm kiếm bằng content
+
+    **************************************************
+    Cách thao tác với LocalStorage
+    * Lưu ý: chỉ cho phép lưu dạng string 
+    -Lưu:   let a = 5;
+            localStorage.setItem("tên key", giá trị);
+
+    * Khi lưu dạng obj hoặc arr phải chuyển sang định dạng JSON  ( JSON.stringify(obj))      
+
+    -Lấy dữ liệu về :       localStorage.getItem("tên key");
+
+    * Phải chuyển từ JSON về obj hoặc arr để sử dụng
+
+        let obj = {
+            name: "a"
+        }
+        localStorage.setItem("name", JSON.stringify(obj));
+        let result = JSON.parse(localStorage.getItem("name"));
+        console.log(result);
+
+    -xóa 1 key: localStorage.removeItem("tên key");
+    - xóa tất cả: localStorage.clear()
+
+    - sessionStorage thì cũng tương tự.
+    -->
+    <script>
+        // let a = 5;
+        // localStorage.setItem("bienA", a);
+        // let result = localStorage.getItem("bienA");
+        // console.log(result);
+        // localStorage.removeItem("bienA");
+
+        // let obj = {
+        //     name: "a"
+        // }
+        // localStorage.setItem("name", JSON.stringify(obj));
+        // let result = JSON.parse(localStorage.getItem("name"));
+        // console.log(result);
+    </script>
+</body>
+
+</html>

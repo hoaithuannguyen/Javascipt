@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div1 {
+        display: flex;
+    }
+
+    .div2:hover {
+        background-color: lightgrey !important;
+    }
+
+    .div2 {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .lightgreen {
+        background-color: lightcoral;
+    }
+
+    .div3 {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+        /* background-color: lightgreen; */
+
+    }
+</style>
+
+<body>
+    <div id="div1"></div>
+    <input type="text" id="input1" placeholder="Mời bạn nhập!">
+    <button onclick="editOrAdd()" id="btn1">Add</button>
+    <div id="div3"></div>
+
+    <script>
+        let flag = true;
+        // tạo 10 ô điểm
+        let div1 = document.getElementById("div1");
+        let result = "";
+        for (let i = 0; i < 10; i++) {
+            result +=
+                `
+                <div class="div2" onclick="change(${i})">${i + 1}</div>
+    
+                `
+        }
+        div1.innerHTML = result;
+        // tạo onclick thay đổi màu nền khi ấn vào
+        let point;
+        function change(index) {
+            let div2 = document.getElementsByClassName("div2");
+            div2[index].style.background = "lightgreen";
+            for (let i = 0; i < 10; i++) {
+                if (i != index) {
+                    div2[i].style.background = "white";
+                }
+            }
+            point = index;
+            console.log(point);
+        }
+        //tạo id ngẫu nhiên
+        function uuid() {
+            return Math.floor(Math.random() * 999999999) + new Date().getMilliseconds();
+        }
+
+        // tạo phần tử cho vào mảng
+        let array = [];
+        function addNew() {
+            console.log(point, "aaaaaaaa");
+            let input1 = document.getElementById("input1").value;
+            let div2 = document.getElementsByClassName("div2");
+            let obj = {
+                id: uuid(),
+                comment: input1,
+                mark: point + 1
+            }
+            array.push(obj);
+            console.log(array);
+            render();
+            document.getElementById("input1").value = "";
+            div2[point].style.background = "white";
+
+        }
+        //in ra poin và comment
+        function render() {
+            let result1 = "";
+            for (let i = 0; i < array.length; i++) {
+                result1 +=
+                    `
+            <div class="div3">${array[i].mark}</div>
+            <div>${array[i].comment}</div>
+            <div><button onclick="showForm(${array[i].id})">Edit</button><button onclick="deleteArray(${array[i].id})">Delete</button></div>
+            `
+            }
+            document.getElementById("div3").innerHTML = result1;
+        }
+
+        //xóa phần tử
+        function deleteArray(id) {
+            console.log(id);
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].id == id) {
+                    array.splice(i, 1);
+                }
+            }
+            render();
+        }
+        // tạo biến chung gian 
+        let selectedIndex;
+        function showForm(id) {
+            console.log(id, "111111111111");
+            // let btn1 = document.getElementById("btn1");
+            // btn1.innerHTML = "update";
+            let markList = document.getElementsByClassName("div2")
+            flag = false;
+            let index1;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].id == id) {
+                    document.getElementById("input1").value = array[i].comment;
+                    for (let j = 0; j < markList.length; j++) {
+                        if (markList[j].innerHTML == array[i].mark) {
+                            markList[j].style.background = "pink";
+                            index1 = j;
+                            console.log(index1, "jjjjjjjjjjjj");
+                        }
+                    }
+                }
+            }
+            selectedIndex = id;
+        }
+
+        function update() {
+            console.log(flag, "flaggggggg");
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].id == selectedIndex) {
+                    array[i].comment = document.getElementById("input1").value;
+                }
+            }
+            render();
+            flag = true;
+        }
+
+        function editOrAdd() {
+            if (flag) {
+                addNew();
+            } else {
+                update();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm cơ bản</title>
+</head>
+
+<body>
+    <input type="text" id="search">
+    <button onclick="search()">Search</button>
+    <div id="divRender"></div>
+    <script>
+        let numbers = ["hoa", "Acccc", "b", "c", "4", "5", "hoamai", "7", "8", "9", "10", "hochi", "bánh"];
+
+        function render(array) {
+            let result = "";
+            for (let i = 0; i < array.length; i++) {
+                result += `
+                        <div>${array[i]}</div>
+                    `
+            }
+            document.getElementById("divRender").innerHTML = result;
+        }
+        render(numbers);
+
+        function search() {
+            let arrSearch = [];
+            let input = document.getElementById("search").value;
+
+            for (let i = 0; i < numbers.length; i++) {
+                let includes = numbers[i].toLowerCase().includes(input.toLowerCase());
+                if (includes) {
+                    arrSearch.push(numbers[i]);
+                    console.log(arrSearch);
+                }
+            }
+            render(arrSearch);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-phân trang</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<style>
+    .image-card-choose {
+        color: red;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <input type="text" id="input">
+    <button onclick="addName()">Add</button>
+
+
+    <table border="1px" cellpadding="5px" cellspacing="5px">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <span onclick="toPrevPage()" class="material-symbols-outlined">arrow_back_ios_new</span>
+    </span>
+    <span id="div2"></span>
+    <span onclick="toNextPage()" class="material-symbols-outlined">arrow_forward_ios</span>
+
+    <script>
+        let names = JSON.parse(localStorage.getItem("names")) || [];
+        let itemsPerPage = 1;
+        let totalPages = Math.ceil(names.length / itemsPerPage);
+        let currentPage = 1;
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+
+        function renderNames() {
+
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = currentPage * itemsPerPage;
+            if (end > names.length) {
+                end = names.length
+            }
+
+            let resultNames = "";
+            for (let i = start; i < end; i++) {
+                resultNames += `
+                        <tr>
+                        <td>${names[i].id}</td>
+                        <td>${names[i].name}</td>
+                        <td><button>Edit</button></td>
+                        <td><button onclick="deleteObj(${names[i].id})">Delete</button></td>
+                        </tr>
+                         `
+            }
+            document.getElementById("tbody").innerHTML = resultNames;
+        }
+        renderNames();
+
+        function addName() {
+            let input = document.getElementById("input").value;
+            obj = {
+                name: input,
+                id: uuid()
+            }
+            names.push(obj);
+            localStorage.setItem("names", JSON.stringify(names));
+            console.log(names);
+            renderNames();
+        }
+
+        function deleteObj(id) {
+            for (let i = 0; i < names.length; i++) {
+                if (names[i].id == id) {
+                    names.splice(i, 1);
+                }
+            }
+            localStorage.setItem("names", JSON.stringify(names));
+            renderNames();
+        }
+
+        // phân trang
+        // 1 sản phẩm / trang
+        // render các trang để lựa chọn
+        function renderPages() {
+            let resultPages = "";
+            for (let i = 1; i <= totalPages; i++) {
+                resultPages += `
+                    <span onclick="selectPage(${i})" class="span" id="btn${i}"">${i}</span>
+                `
+            }
+            document.getElementById("div2").innerHTML = resultPages;
+            document.getElementById("btn1").style.color = "red";
+            document.getElementById("btn1").style.fontSize = "20px";
+        }
+        renderPages();
+
+        function selectPage(page) {
+            console.log(page);
+
+            let span = document.getElementsByClassName("span");
+
+            for (let i = 0; i < span.length; i++) {
+                if (i == page - 1) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+
+            currentPage = page;
+            renderNames();
+        }
+
+        function toPrevPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+            document.getElementById("btn1").style.fontSize = "";
+
+            currentPage--;
+            if (currentPage < 1) {
+                currentPage = 1
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderNames();
+        }
+
+        function toNextPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+            document.getElementById("btn1").style.fontSize = "";
+
+            currentPage++;
+            let totalPage = Math.ceil(names.length / itemsPerPage);
+            if (currentPage > totalPage) {
+                currentPage = totalPage
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderNames();
+        }
+    </script>
+</body>
+
+</html>

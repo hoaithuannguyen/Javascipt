@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký đăng nhập cơ bản- Làm lại</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    form {
+        border: 1px solid grey;
+        width: 600px;
+        height: 500px;
+        margin: 0 auto;
+        margin-top: 40px;
+        border-radius: 5px;
+    }
+
+    #divSignIn {
+        margin-top: 30px;
+        margin-left: 38%;
+        font-size: 40px;
+    }
+
+    #divEmail {
+        margin-left: 23%;
+        margin-top: 40px;
+    }
+
+
+    #divPassword {
+        margin-left: 23%;
+        margin-top: 40px;
+    }
+
+    #divButton {
+        margin-left: 23%;
+        margin-top: 40px;
+    }
+
+    button {
+        width: 90px;
+    }
+
+    #btnSignUpAndSignIn {
+        width: 340px;
+        height: 50px;
+        background-color: rgb(26, 115, 232);
+        border: none;
+        color: white;
+    }
+
+    #email {
+        width: 340px;
+        height: 50px;
+        outline: none;
+    }
+
+    #email:focus {
+        border: 2px solid rgb(26, 115, 232);
+    }
+
+    #password {
+        width: 340px;
+        height: 50px;
+        outline: none;
+    }
+
+    #password:focus {
+        border: 2px solid rgb(26, 115, 232);
+    }
+
+    #div1 {
+        margin-top: 10px;
+        display: none;
+    }
+
+    #div2 {
+        margin-top: 10px;
+        display: none;
+    }
+
+    #div3 {
+        margin-top: 10px;
+        display: none;
+    }
+
+    input::placeholder {
+        font-size: 16px;
+    }
+
+    #w {
+        color: rgb(26, 115, 232);
+    }
+
+    #e {
+        color: red;
+    }
+
+    #l {
+        color: yellow;
+    }
+
+    #c {
+        color: rgb(26, 115, 232);
+    }
+
+    #o {
+        color: green;
+    }
+
+    #m {
+        color: red;
+    }
+
+    #ee {
+        color: purple;
+    }
+</style>
+
+<body>
+    <form action="">
+        <div id="divSignIn">
+            <span id="w">W</span><span id="e">e</span><span id="l">l</span><span id="c">c</span><span
+                id="o">o</span><span id="m">m</span><span id="ee">e</span>
+
+        </div>
+        <div id="divEmail">
+            <input type="text" id="email" placeholder=" Username"><br>
+            <div id="div1">hiển thị thông báo</div>
+        </div>
+
+        <div id="divPassword">
+            <input type="text" id="password" placeholder=" Password"><br>
+            <div id="div2">hiển thị thông báo</div>
+        </div>
+
+        <div id="divButton">
+            <button onclick="joinOrSignIn(event)" id="btnSignUpAndSignIn">Join or Login</button>
+            <div id="div3">Chúc mừng bạn đã đăng ký thành công!</div>
+        </div>
+    </form>
+    <script>
+        // muốn làm đăng ký đăng nhập thì:
+        //đầu tiên phải làm đăng ký cơ bản sau đó làm đăng nhập cơ bản
+        // rồi nâng cấp 
+
+        //đăng ký: phải có điều kiên là email không được trùng
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        // sử dụng regex
+        function conditionEmail(email) {
+            // Kiểm tra định dạng email bằng regex
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function conditionPassword(password) {
+            // Kiểm tra mật khẩu có ít nhất 6 ký tự, gồm chữ cái hoa, chữ cái thường và số
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+            return regex.test(password);
+        }
+        // hàm tạo tk
+        function signUp() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let div1 = document.getElementById("div1");
+            let div2 = document.getElementById("div2");
+
+            if (!conditionEmail(email)) {
+                div1.style.display = "block";
+                // div1.innerHTML = "Email không hợp lệ";
+                div2.style.display = "none";
+                return;
+            }
+
+            if (!conditionPassword(password)) {
+                div2.style.display = "block";
+                div2.innerHTML = "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 6 ký tự, gồm chữ cái hoa, chữ cái thường và số.";
+                div1.style.display = "none";
+                return;
+            }
+
+            let object = {
+                cart: [],
+                email: email,
+                password: password
+            }
+
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email == email) {
+                    return;
+                }
+            }
+            users.push(object);
+            localStorage.setItem("users", JSON.stringify(users));
+            console.log(users);
+
+            div2.style.display = "block";
+            div2.innerHTML = "Bạn đã tạo tài khoản thành công";
+
+            setTimeout(() => {
+                div2.style.display = "none";
+            }, 3000);
+
+            div1.style.display = "none";
+
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+        }
+        // hàm đăng nhập
+        function signIn() {
+            window.location.href = "render sản phẩm.html";
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+        }
+        // hàm lựa chọn đăng nhập hoặc tạo tk
+        function joinOrSignIn(e) {
+            e.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            for (let i = 0; i < users.length; i++) {
+                if ((users[i].email == email) && (users[i].password == password)) {
+                    localStorage.setItem("currenUser", users[i].email);
+                    signIn();
+                }
+            }
+            signUp();
+        }
+    </script>
+</body>
+
+</html>

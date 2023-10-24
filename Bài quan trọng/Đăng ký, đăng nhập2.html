@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký ,đăng nhập làm lại</title>
+</head>
+<style>
+    button {
+        margin-top: 5px;
+    }
+</style>
+
+<body>
+    <form action="">
+        <label for="">Email</label><br>
+        <input type="text" id="email"><br>
+        <label for="">Password</label><br>
+        <input type="password" id="password"><br>
+        <button onclick="signUp(event)">Đăng ký</button>
+        <button onclick="signIn(event)">Đăng nhập</button>
+    </form>
+    <script>
+
+
+        // làm đăng ký ,đăng nhập và lưu vào localStorage
+        //b1: làm đăng ký
+        //tạo mảng rồi lưu thông tin vào mảng, lưu ý: không trùng email
+        //b2: làm đăng nhập
+        // sau khi đăng ký xong, trong mảng đã có dữ liệu
+        // tiến hành so sánh nếu trùng email và password thì tiến thành cho đăng nhập
+
+        let myArray = JSON.parse(localStorage.getItem("listSignUp")) || [];
+
+        function signUp(e) {
+            console.log("signUp");// kiểm tra xem hàm đã chạy chưa?
+            e.preventDefault();
+
+            let obj = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+            }
+
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i].email == obj.email) {
+                    return;
+                }
+            }
+            myArray.push(obj);
+            localStorage.setItem("listSignUp", JSON.stringify(myArray));
+            console.log(myArray);
+        }
+
+        function signIn(e) {
+            console.log("signIn");
+            e.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            for (let i = 0; i < myArray.length; i++) {
+                if ((myArray[i].email == email) && (myArray[i].password == password)) {
+                    window.location.href = "https://www.w3schools.com/";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

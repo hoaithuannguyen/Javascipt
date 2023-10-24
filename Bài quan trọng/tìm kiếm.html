@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tìm kiếm nâng cao</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<style>
+    span {
+        font-size: 50px;
+    }
+
+    .image-card-choose {
+        color: red;
+    }
+</style>
+
+<body>
+    <input type="text" oninput="search()" id="input">
+    <div id="div1"></div>
+    <span onclick="toPrevPage()" class="material-symbols-outlined">arrow_back_ios_new</span>
+    </span>
+    <span id="div2"></span>
+    <span onclick="toNextPage()" class="material-symbols-outlined">arrow_forward_ios</span>
+
+    <script>
+
+        let items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let itemsPerPage = 3;
+        let totalPages = Math.ceil(items.length / itemsPerPage);
+        let currentPage = 1;
+
+        function renderItems() {
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = currentPage * itemsPerPage;
+            if (end > items.length) {
+                end = items.length
+            }
+
+            let resultItems = "";
+            for (let i = start; i < end; i++) {
+                resultItems += `
+                            <span>${items[i]}</span>
+                    `
+            }
+            document.getElementById("div1").innerHTML = resultItems;
+            let span = document.getElementsByClassName("span");
+
+        }
+        renderItems();
+
+        function renderPages() {
+            let resultPages = "";
+            for (let i = 1; i <= totalPages; i++) {
+                resultPages += `
+                            <span onclick="selectPage(${i})" class="span" id="btn${i}">${i}</span>                 
+                    `
+            }
+            document.getElementById("div2").innerHTML = resultPages;
+            document.getElementById("btn1").style.color = "red";
+        }
+        renderPages();
+
+        function selectPage(page) {
+            console.log(page, "page");
+            document.getElementById("btn1").style.color = "";
+            let span = document.getElementsByClassName("span");
+
+            for (let i = 0; i < span.length; i++) {
+                if (i == page - 1) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            currentPage = page;
+            renderItems();
+        }
+
+        function toPrevPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+
+            currentPage--;
+            if (currentPage < 1) {
+                currentPage = 1
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderItems();
+        }
+
+        function toNextPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+
+            currentPage++;
+            let totalPage = Math.ceil(items.length / itemsPerPage);
+            if (currentPage > totalPage) {
+                currentPage = totalPage
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderItems();
+        }
+
+        // function tìm kiếm
+
+        function search() {
+            let arrSearch = [];
+            let input = document.getElementById("input").value;
+            let includes = numbers.includes(input);
+
+            if (includes) {
+                arrSearch.push(input);
+                console.log(arrSearch);
+            }
+            renderItems(arrSearch);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>render tất cả sản phẩm</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #divPhoto {
+        border: 1px solid black;
+        width: 250px;
+        height: 200px;
+    }
+
+    #div1 {
+        display: flex;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <!-- <img src="./images/tueanh.jpg" alt=""> -->
+    <div id="div1"></div>
+    <button onclick="changePage()">Giỏ hàng</button>
+
+    <div>
+        <span class="material-symbols-outlined" onclick="luaChon()">
+            expand_less
+        </span>
+        <span class="material-symbols-outlined" onclick="luaChon1()">
+            expand_more
+        </span>
+    </div>
+    <input type="text" id="input">
+    <button onclick="search()">Search</button>
+    <script>
+        /* let listItem = [{
+            id: 1,
+            name: "orange",
+            price: 99000,
+            img: "a",
+            stock: 10
+        },
+        {
+            id: 2,
+            name: "wine",
+            price: 8000,
+            img: "a",
+            stock: 10
+        },
+        {
+            id: 3,
+            name: "apple",
+            price: 12000,
+            img: "a",
+            stock: 10
+        },
+        {
+            id: 4,
+            name: "lemon",
+            price: 5000,
+            img: "a",
+            stock: 10
+        },
+        {
+            id: 5,
+            name: "rice",
+            price: 3000,
+            img: "a",
+            stock: 10
+        },
+        {
+            id: 6,
+            name: "water",
+            price: 1000,
+            img: "a",
+            stock: 10
+        }
+        ];
+        localStorage.setItem("listItem", JSON.stringify(listItem)); */
+
+        // mảng arrListItem chính là các sản phẩm trên website
+        let arrListItem = JSON.parse(localStorage.getItem("listItem")) || [];
+        console.log(arrListItem);
+
+        function renderArrListItem(arrListItem) {
+            let text = "";
+            for (let i = 0; i < arrListItem.length; i++) {
+                text += `
+                        <div id="divPhoto">
+                            <img src="./images/tueanh.jpg" alt="">
+                            <p>${arrListItem[i].name}</p>
+                            <p>${arrListItem[i].price}</p>
+                            <button onclick="buyItem(${arrListItem[i].id})">mua</button>
+                        </div>
+                        `
+            }
+            document.getElementById("div1").innerHTML = text;
+        }
+        renderArrListItem(arrListItem);
+
+
+        function buyItem(id) {
+            // đặt 1 biến làm giỏ hàng của người mua
+            let cart;
+            // currenUser chính là email mà đã đăng nhập vào
+            let currenUser = localStorage.getItem("currenUser");
+            // biến product này = với phần tử trong arrListItem(được lấy ra)
+            let product;
+
+            let users = JSON.parse(localStorage.getItem("users"));
+            console.log(users, "111111111111111111");
+
+            for (let j = 0; j < users.length; j++) {
+                if (users[j].email == currenUser) {
+                    cart = users[j].cart;
+                }
+            }
+
+            for (let i = 0; i < arrListItem.length; i++) {
+                if (arrListItem[i].id == id) {
+                    product = arrListItem[i];
+                    break;
+                }
+            }
+            console.log(cart, "carttttttttttttt");
+            let flag = true;
+            for (let k = 0; k < cart.length; k++) {
+                if (cart[k].id == product.id) {
+                    // thấy trùng thì tăng số lượng
+                    cart[k].quantity += 1;
+                    console.log("tăng số lượng lên");
+                    flag = false;
+                    break;
+                }
+            }
+            //chạy hết mà không thấy trùng thì thêm mới
+            if (flag) {
+                let obj = {
+                    // id: product.id,
+                    // name: product.name,
+                    // price: product.price,
+                    // img: "a",
+                    // stock: product.stock,
+                    ...product,
+                    quantity: 1
+                }
+                cart.push(obj);
+            }
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        function changePage() {
+            window.location.href = "hiển thị sản phẩm ấn mua.html";
+        }
+
+        let flag1 = 1;
+        let flag2 = 1;
+
+        // hàm sắp xếp tăng giảm theo giá tiền
+        function descending() {
+
+            let a = arrListItem.sort(function (a, b) {
+                return a.price - b.price;
+            });
+
+            console.log(a, "999999999992222");
+            renderArrListItem(a);
+        }
+        // hàm sắp xếp giảm tăng theo giá tiền
+        function ascending() {
+            let b = arrListItem.sort(function (a, b) {
+                return b.price - a.price;
+            });
+
+            console.log(b, "999999999991111");
+            renderArrListItem(b);
+        }
+        // hàm trả về vị trí ban đầu
+        function restoreOriginalState() {
+            arrListItem = JSON.parse(localStorage.getItem("listItem")) || []; // Lấy lại mảng ban đầu từ localStorage
+            renderArrListItem(arrListItem); // Gọi lại hàm renderArrListItem để cập nhật giao diện
+        }
+
+        // hàm lựa chọn 1
+        function luaChon() {
+            if (flag1 == 1) {
+                descending();
+                flag1++;
+                flag2 = 1;
+            } else if (flag1 == 2) {
+                restoreOriginalState();
+                flag1 = 1;
+                flag2 = 1;
+            }
+        }
+        // hàm lựa chọn 2
+        function luaChon1() {
+            if (flag2 == 1) {
+                flag1 = 1;
+                ascending();
+                flag2++;
+            } else if (flag2 == 2) {
+                flag1 = 1;
+                restoreOriginalState();
+                flag2 = 1;
+            }
+        }
+
+        function search() {
+            let arrSearch = [];
+            let input = document.getElementById("input").value;
+
+            for (let i = 0; i < arrListItem.length; i++) {
+                let includes = arrListItem[i].name.includes(input);
+                if (includes) {
+                    arrSearch.push(arrListItem[i]);
+                    console.log(arrSearch);
+                }
+            }
+            renderArrListItem(arrSearch);
+        }
+    </script>
+</body>
+
+</html>

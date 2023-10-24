@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân trang</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<style>
+    span {
+        font-size: 50px;
+    }
+
+    .image-card-choose {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="div1"></div>
+    <span onclick="toPrevPage()" class="material-symbols-outlined">arrow_back_ios_new</span>
+    <span id="div2"></span>
+    <span onclick="toNextPage()" class="material-symbols-outlined">arrow_forward_ios</span>
+
+    <script>
+        //b1: tạo mảng có các sản phẩm
+        //b2: 1 trang để 3 sản phẩm
+        //b3: tính ra số trang
+        /* let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        let currentPage = 1;
+        let itemsPerPage = 3;
+        let totalPage = Math.ceil(arr.length / itemsPerPage);
+
+        function renderArr() {
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = currentPage * itemsPerPage;
+
+            if (end > arr.length) {
+                end = arr.length;
+            }
+
+            let resultArr = "";
+            for (let i = start; i < end; i++) {
+                resultArr += `
+                     <span>${arr[i]}</span>
+                `
+            }
+            document.getElementById("div1").innerHTML = resultArr;
+        }
+        renderArr();
+
+        function renderPagination() {
+            let resultPagi = "";
+            for (let i = 1; i <= totalPage; i++) {
+                resultPagi += `
+                     <span class="span" onclick="selectPage(${i})">${[i]}</span>
+                `
+            }
+            document.getElementById("div2").innerHTML = resultPagi;
+        }
+        renderPagination();
+
+        function selectPage(page) {
+            console.log("selectPage");
+            currentPage = page;
+            renderArr();
+        }
+
+ */
+        // tạo biến global currentPage 
+        /*  let currentPage = 1;
+         let itemsPerPage = 3;
+         // bước 1: tạo mảng có phần tử
+         // 
+ 
+         let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+         // bước 2: tạo hàm để render ra 10 phần tử trên
+         function renderArray() {
+             console.log(currentPage, "test");
+             //bước 5: tạo biến start và end theo công thức
+             let start = (currentPage - 1) * itemsPerPage;
+             let end = currentPage * itemsPerPage;
+ 
+             if (end > array.length) {
+                 end = array.length;
+             }
+ 
+             let resultArray = "";
+             for (let i = start; i < end; i++) {
+                 resultArray += `
+                 <span>${array[i]}</span>
+                 `
+             }
+             document.getElementById("div1").innerHTML = resultArray;
+         }
+         renderArray();
+ 
+         // bước 3: tạo hàm render ra số trang
+         // để 3 sản phẩm 1 trang
+ 
+         let totalPage = Math.ceil(array.length / itemsPerPage);
+         function renderPages() {
+             let resultPages = "";
+             for (let i = 1; i <= totalPage; i++) {
+                 resultPages += `
+                 <span onclick="selectedPage(${i})">${[i]}</span>
+                 `
+             }
+             document.getElementById("div2").innerHTML = resultPages;
+         }
+         renderPages();
+         //bước 4 tạo biến currentPage rồi gắn = page
+         function selectedPage(page) {
+             console.log(page, "selectedPage");
+             currentPage = page;
+             renderArray();
+         }
+  */
+        let items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let itemsPerPage = 3;
+        let totalPages = Math.ceil(items.length / itemsPerPage);
+        let currentPage = 1;
+        // 
+        function renderItems() {
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = currentPage * itemsPerPage;
+            if (end > items.length) {
+                end = items.length
+            }
+
+            let resultItems = "";
+            for (let i = start; i < end; i++) {
+                resultItems += `
+                        <span>${items[i]}</span>
+                `
+            }
+            document.getElementById("div1").innerHTML = resultItems;
+            let span = document.getElementsByClassName("span");
+
+        }
+        renderItems();
+        // 
+        function renderPages() {
+            let resultPages = "";
+            for (let i = 1; i <= totalPages; i++) {
+                resultPages += `
+                        <span onclick="selectPage(${i})" class="span" id="btn${i}">${i}</span>                 
+                `
+            }
+            document.getElementById("div2").innerHTML = resultPages;
+            document.getElementById("btn1").style.color = "red";
+        }
+        renderPages();
+        // 
+        function selectPage(page) {
+            console.log(page, "page");
+            document.getElementById("btn1").style.color = "";
+            let span = document.getElementsByClassName("span");
+
+            for (let i = 0; i < span.length; i++) {
+                if (i == page - 1) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            currentPage = page;
+            renderItems();
+        }
+        // 
+        function toPrevPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+
+            currentPage--;
+            if (currentPage < 1) {
+                currentPage = 1
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderItems();
+        }
+        // 
+        function toNextPage() {
+            let span = document.getElementsByClassName("span");
+            document.getElementById("btn1").style.color = "";
+
+            currentPage++;
+            let totalPage = Math.ceil(items.length / itemsPerPage);
+            if (currentPage > totalPage) {
+                currentPage = totalPage
+            }
+
+            for (let i = 0; i < span.length; i++) {
+                if (i + 1 == currentPage) {
+                    span[i].classList.add("image-card-choose");
+                } else {
+                    span[i].classList.remove("image-card-choose");
+                }
+            }
+            renderItems();
+        }
+    </script>
+</body>
+
+</html>

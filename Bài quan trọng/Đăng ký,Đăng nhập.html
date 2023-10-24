@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập, đăng ký</title>
+</head>
+<style>
+    form {
+        border: 1px solid red;
+        width: 500px;
+        height: 300px;
+        margin: 0 auto;
+        background-color: plum;
+        position: relative;
+    }
+
+    #div1 {
+        color: black;
+        position: relative;
+        left: 195px;
+    }
+
+    #div2 {
+        color: black;
+        position: relative;
+        left: 195px;
+        top: 20px;
+    }
+
+    #btn1 {
+        background-color: lightgreen;
+        position: relative;
+        left: 70px;
+    }
+
+    #btn2 {
+        background-color: lightcoral;
+        position: relative;
+        right: 28px;
+    }
+
+    #div3 {
+        display: flex;
+        position: relative;
+    }
+
+    label {
+        margin-left: 25%;
+    }
+
+    button {
+        margin-left: 25%;
+        margin-top: 20px;
+        border: 1px solid yellow;
+    }
+
+    #divEmail {
+        margin-top: 55px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    #input1 {
+        margin-left: 23px;
+    }
+</style>
+
+<body>
+    <form action="">
+        <div id="divEmail">
+            <label for="input1">Email:</label>
+            <input type="text" id="input1"><br>
+            <div id="div1"></div>
+        </div>
+        <div id="divPassword">
+            <label for="input2">Password:</label>
+            <input type="password" id="input2"><br>
+        </div>
+        <div id="div3">
+            <button onclick="save(event)" id="btn1">Đăng ký</button><br>
+            <button onclick="login(event)" id="btn2">Đăng nhập</button>
+        </div>
+        <div id="div2"></div>
+    </form>
+    <script>
+
+        myArray = [];
+        function conditionEmail(email) {
+            // Kiểm tra định dạng email bằng regex
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function conditionPassword(password) {
+            // Kiểm tra mật khẩu có ít nhất 6 ký tự, gồm chữ cái hoa, chữ cái thường và số
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+            return regex.test(password);
+        }
+
+        function save(e) {
+            e.preventDefault();
+
+            let div1 = document.getElementById("div1");
+            let div2 = document.getElementById("div2");
+            let email = document.getElementById("input1").value;
+            let password = document.getElementById("input2").value;
+
+            if (!conditionEmail(email)) {
+                div1.style.display = "block";
+                div1.innerHTML = "Email không hợp lệ";
+                div2.style.display = "none";
+                return;
+            }
+
+            if (!conditionPassword(password)) {
+                div2.style.display = "block"
+                div2.innerHTML = "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 6 ký tự, gồm chữ cái hoa, chữ cái thường và số.";
+                div1.style.display = "none";
+                return;
+            }
+
+            let obj = {
+                email: email,
+                passwork: password
+            }
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i].email == obj.email) {
+                    div1.style.display = "block";
+                    div1.innerHTML = "Email đã được sử dụng";
+                    div2.style.display = "none";
+                    document.getElementById("input1").value = "";
+                    document.getElementById("input2").value = "";
+                    return;
+                }
+            }
+
+            myArray.push(obj);
+            console.log(myArray);
+            div2.style.display = "block";
+            div2.innerHTML = "Bạn đã tạo tài khoản thành công";
+
+            setTimeout(() => {
+                div2.style.display = "none";
+            }, 3000);
+
+            div1.style.display = "none";
+            document.getElementById("input1").value = "";
+            document.getElementById("input2").value = "";
+        }
+
+        function login(e) {
+            e.preventDefault();
+            let div1 = document.getElementById("div1");
+            let a = document.getElementById("input1").value;
+            let b = document.getElementById("input2").value;
+
+            for (let i = 0; i < myArray.length; i++) {
+                if ((myArray[i].email == a) && (myArray[i].passwork == b)) {
+                    window.location.href = "https://vnexpress.net/";
+                } else if ((myArray[i].email != a)) {
+                    div1.innerHTML = "Mời nhập lại Email";
+                } else if ((myArray[i].password != b)) {
+                    div2.innerHTML = "Passwork bị sai!";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

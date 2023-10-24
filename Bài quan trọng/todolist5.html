@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>làm lại thêm sửa xóa</title>
+</head>
+<style>
+    input {
+        outline: none;
+    }
+
+    tr,
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td><label for="ten">Tên</label></td>
+                <td><input type="text" id="ten"></td>
+            </tr>
+            <tr>
+                <td><label for="ten">Địa chỉ</label></td>
+                <td><input type="text" id="diachi"></td>
+            </tr>
+        </table>
+        <button onclick="addNewOrEdit()">Add</button>
+    </div>
+    <table border="1px" cellpadding="10px" cellspacing="10px">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th colspan="2">Hành Động</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script>
+        let flag = true;
+        let selectedIndex;
+
+        // tạo id ngẫu nhiên
+        function uuid() {
+            return Math.floor(Math.random() * 9999999999) + new Date().getMilliseconds();
+        }
+        // tạo mảng chưa các object
+        people = [
+            {
+                id: uuid(),
+                name: "việc 1",
+                address: "hạ long 1"
+            },
+            {
+                id: uuid(),
+                name: "việc 2",
+                address: "hạ long 2"
+            },
+            {
+                id: uuid(),
+                name: "việc 3",
+                address: "hạ long 3"
+            },
+            {
+                id: uuid(),
+                name: "việc 4",
+                address: "hạ long 4"
+            },
+            {
+                id: uuid(),
+                name: "việc 5",
+                address: "hạ long 5"
+            },
+        ]
+        // render sản phẩm
+        function renderPeople() {
+            let resultPeople = "";
+            for (let i = 0; i < people.length; i++) {
+                resultPeople +=
+                    `
+                    <tr>
+                        <td>${people[i].id}</td>
+                        <td>${people[i].name}</td>
+                        <td>${people[i].address}</td>
+                        <td><button onclick="showFormUpdate(${people[i].id})">Edit</button></td>
+                        <td><button onclick="deletePeople(${people[i].id})">Delete</button></td>
+                    </tr>
+                `
+            }
+            document.getElementById("tbody").innerHTML = resultPeople;
+        }
+        renderPeople();
+
+        // thêm sản phẩm
+        function addNewPerson() {
+            let ten = document.getElementById("ten").value;
+            let diachi = document.getElementById("diachi").value;
+
+            let obj = {
+                id: uuid(),
+                name: ten,
+                address: diachi
+            }
+            people.push(obj);
+            renderPeople();
+        }
+
+        // xóa sản phẩm
+        function deletePeople(id) {
+            console.log(id);
+            for (let i = 0; i < people.length; i++) {
+                if (people[i].id == id) {
+                    people.splice(i, 1);
+                }
+            }
+            renderPeople();
+        }
+
+        // sửa sản phẩm: hiển thị sản phẩm muốn sửa
+        // sửa đổi và xác nhận(gán lại giá trị)
+        function showFormUpdate(id) {
+            console.log(id);
+            // tạo 1 cờ chuyển đổi
+            flag = false;
+            // hiển thị sản phẩm
+            let ten = document.getElementById("ten");
+            let diachi = document.getElementById("diachi");
+
+            for (let i = 0; i < people.length; i++) {
+                if (people[i].id == id) {
+                    document.getElementById("ten").value = people[i].name;
+                    diachi.value = people[i].address;
+                }
+            }
+            // tạo biến chung gian
+            selectedIndex = id;
+        }
+
+        function activeSave() {
+            let ten = document.getElementById("ten");
+            let diachi = document.getElementById("diachi");
+            for (let i = 0; i < people.length; i++) {
+                if (people[i].id == selectedIndex) {
+                    people[i].name = ten.value;
+                    people[i].address = diachi.value;
+                }
+            }
+            renderPeople();
+            flag = true;
+        }
+
+        function addNewOrEdit() {
+            if (flag) {
+                addNewPerson();
+                console.log("1111111111");
+            } else {
+                activeSave();
+                console.log("222222222");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #div {
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: rgb(22, 5, 37)
+        }
+
+        h1 {
+            color: rgb(209, 38, 164);
+        }
+
+        #contain {
+            background-color: white;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .shape {
+            border-radius: 50px;
+            background-color: rgb(229, 222, 222);
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            padding: 2px;
+            font-size: 6px;
+        }
+
+        .showPoint {
+            border-radius: 50px;
+            background-color: rgb(229, 222, 222);
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            padding: 3px;
+            font-size: 10px;
+        }
+
+        .tab {
+            width: 100%;
+        }
+
+        .contains {
+            position: relative;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .menu {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        span {
+            color: rgb(209, 38, 164);
+            font-size: 8px !important;
+        }
+    </style>
+    <div id="div">
+        <h1>Feedback Coach</h1>
+        <div id="contain">
+            <h3>Đánh giá chất lượng</h3>
+            <table>
+                <tr id="choosePoint">
+                </tr>
+            </table>
+            <br>
+            <div class="contains">
+                <input type="text" id="text">
+                <button id="send"></button>
+            </div>
+            <br><br><br>
+            <table class="tab">
+                <tbody id="body">
+                </tbody>
+            </table>
+        </div>
+        <script>
+            let choosePoint = document.getElementById("choosePoint");
+            let btn = document.getElementById("send");
+            let input = document.getElementById("text");
+            let showPoint = document.getElementsByClassName("showPoint")
+            let indexPoint = document.getElementsByClassName("shape")
+            let textNote = document.getElementsByClassName("textNote")
+            let body = document.getElementById("body")
+            let Feedback = []
+            let index = 0;
+            let num = 1;
+            let choose = ""
+            let flag = "send";
+            // tao nut chon point
+            for (let i = 0; i < 10; i++) {
+                choose += `<td class="shape">${i + 1}</td>`
+            }
+            choosePoint.innerHTML = choose
+
+            // tao hieu ung doi mau khi click point
+            for (let i = 0; i < 10; i++) {
+                indexPoint[i].onclick = () => {
+                    indexPoint[i].style.backgroundColor = " rgb(209, 38, 164)"
+                    indexPoint[i].style.color = "white"
+                    num = i + 1
+                    for (let j = 0; j < 10; j++) {
+                        if (j != i) {
+                            indexPoint[j].style.backgroundColor = "rgb(229, 222, 222)"
+                            indexPoint[j].style.color = "black"
+                        }
+                    }
+                    console.log(num)
+                }
+            }
+
+            // tao Id ngau nhien
+            function uuid() {
+                return Math.floor(Math.random() * 999999) + new Date().getMilliseconds();
+            }
+
+            // su kien cho nut send them vao mang va update lai phan tu
+
+            btn.innerHTML = "send"
+            btn.onclick = () => {
+                if (flag == "send") {
+                    let obj = {
+                        input: input.value,
+                        point: num,
+                        id: uuid()
+                    }
+                    indexPoint[num - 1].style.backgroundColor = " rgb(229, 222, 222)"
+                    indexPoint[num - 1].style.color = "black"
+                    Feedback.push(obj)
+                    num = 1;
+                    input.value = "";
+                    render(Feedback)
+                } else {
+                    indexPoint[num - 1].style.backgroundColor = " rgb(229, 222, 222)"
+                    indexPoint[num - 1].style.color = "black"
+                    update(input.value)
+                    btn.innerHTML = "send"
+                    flag = "send"
+                    console.log(num);
+                }
+            }
+
+            //ham render hien thi su kien  
+            function render(arr) {
+                let text = ""
+                for (let i = 0; i < arr.length; i++) {
+                    text += `
+            <tr class="menu">
+                        <td><div  class="showPoint ">${arr[i].point}</div></td>
+                        <td> <span id="editText" class="material-symbols-outlined" onclick="noteFlag(${arr[i].id})">
+                            edit_square
+                        </span>
+                        <span id="delete" class="material-symbols-outlined" onclick="deletea(${arr[i].id})">
+                            close
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td>${arr[i].input}</td>
+                    </tr>
+            `
+                }
+                document.getElementById("body").innerHTML = text;
+            }
+
+            // ham xoa
+            function deletea(index) {
+                for (let i = 0; i < Feedback.length; i++) {
+                    if (Feedback[i].id == index) {
+                        Feedback.splice(i, 1)
+                    }
+                }
+                render(Feedback)
+            }
+
+            // su kien khi update
+            let noteIndex;
+            function noteFlag(index) {
+                flag = "update"
+                for (let i = 0; i < Feedback.length; i++) {
+                    if (Feedback[i].id == index) {
+                        indexPoint[Feedback[i].point - 1].style.backgroundColor = "rgb(209, 38, 164)"
+                        indexPoint[Feedback[i].point - 1].style.color = "white"
+                        input.value = Feedback[i].input
+                        num = Feedback[i].point
+                        noteIndex = i
+                        showPoint[i].style.backgroundColor = "rgb(209, 38, 164)"
+                        showPoint[i].style.color = "white"
+                    } else {
+                        indexPoint[Feedback[i].point - 1].style.backgroundColor = "rgb(229, 222, 222)"
+                        indexPoint[Feedback[i].point - 1].style.color = "black"
+                        showPoint[i].style.backgroundColor = "rgb(229, 222, 222)"
+                        showPoint[i].style.color = "black"
+                    }
+                }
+                btn.innerHTML = "update"
+            }
+
+            // ham update
+            function update(text) {
+                Feedback[noteIndex].input = text
+                Feedback[noteIndex].point = num
+                num = 1;
+                input.value = ""
+                render(Feedback)
+            }
+            input.style.width = "100%"
+            input.style.height = "25px"
+            btn.style.position = "absolute"
+            btn.style.right = "25px"
+            btn.style.bottom = "5px"
+            btn.style.padding = "0 10px"
+            btn.style.fontSize = "10px"
+        </script>
+</body>
+
+</html>

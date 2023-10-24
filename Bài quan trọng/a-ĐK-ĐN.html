@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Đăng nhập - localStorage</title>
+</head>
+<style>
+    button {
+        margin-top: 5px;
+    }
+
+    form {
+        padding-left: 500px;
+        padding-top: 100px;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <form>
+        <label for="">Email</label><br>
+        <input type="text" id="email"><br>
+        <label for="">Password</label><br>
+        <input type="password" id="password"><br>
+        <button onclick="signUp(event)">SignUp</button>
+        <button onclick="signIn(event)">SignIn</button>
+    </form>
+    <table>
+        <thead></thead>
+    </table>
+    <script>
+        //localStorage
+        //Đăng ký,đăng nhập
+        let signUpList = JSON.parse(localStorage.getItem("signUpList")) || [];
+
+        function signUp(e) {
+            e.preventDefault();
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            object = {
+                email: email,
+                password: password
+            }
+
+            for (let i = 0; i < signUpList.length; i++) {
+                if (signUpList[i].email == object.email) {
+                    return;
+                }
+            }
+            signUpList.push(object);
+            localStorage.setItem("signUpList", JSON.stringify(signUpList));
+        }
+
+        function signIn(e) {
+            e.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            for (let i = 0; i < signUpList.length; i++) {
+
+                if ((signUpList[i].email == email) && (signUpList[i].password == password)) {
+                    window.location.href = "http://127.0.0.1:5500/B%C3%A0i%20quan%20tr%E1%BB%8Dng/a-todolist-phantrang.html";
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

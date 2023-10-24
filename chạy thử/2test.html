@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function reverseString(inputString) {
+            let word = inputString.split(" "); // Tách chuỗi thành mảng các từ theo khoảng trắng
+            let reversedWords = word.map(word => word.split("").reverse().join("")); // Đảo ngược từng từ
+            let reversedString = reversedWords.join(" "); // Ghép các từ đã đảo lại thành chuỗi mới
+
+            return reversedString;
+        }
+
+        let userInput = prompt("Nhập chuỗi:");
+        let reversed = reverseString(userInput);
+
+        console.log("Chuỗi sau khi đảo ngược:", reversed);
+
+    </script>
+</body>
+
+</html>
